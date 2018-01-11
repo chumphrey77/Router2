@@ -30,7 +30,7 @@ public class Bootloader extends Observable {
 
     /**
      * Adds oberservers, makes changes and notifies the observers of changes
-     * Testing will be done in this method
+     * Testing will be done in this method!
      * @param parentActivity
      */
     private void bootRouter(Activity parentActivity){
