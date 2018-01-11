@@ -38,16 +38,16 @@ public class Bootloader extends Observable {
         addObserver(UIManager.getInstance());
         setChanged();
         notifyObservers();
-        UIManager.getInstance().displayMessage(Constants.routerName + " is up and running!");
-        UIManager.getInstance().displayMessage("The IP Address is " + Constants.IP_ADDRESS);
 
         test();
     }
 
     /**
      * Method for testing any functionaility
+     * Currently just displays 2 message via Toast
      */
     private void test(){
-
+        UIManager.getInstance().displayMessage(Constants.routerName + " is up and running!");
+        UIManager.getInstance().displayMessage("The IP Address is " + Constants.IP_ADDRESS);
     }
 }
