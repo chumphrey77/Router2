@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Router2</string>
+    <string name="router_name">Colten\'s Router</string>
+    <string name="sniffer">Sniffer</string>
+    <string name="table">Table</string>
+    <string name="packetStuff">Packet Stuff</string>
+    <string name="adjTable">Adjacency Table</string>
+    <string name="arpTable">ARP Table</string>
+    <string name="forwardingTable">Forwarding Table</string>
+    <string name="routingable">Routing Table</string>
+    <string name="IPMenuItem">Show IP Address</string>
+    <string name="ProtocolStuff">Protocol Stuff</string>
 </resources>

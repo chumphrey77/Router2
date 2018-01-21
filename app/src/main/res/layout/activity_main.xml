@@ -7,12 +7,216 @@
     tools:context="com.goose77.router2.MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/textView"
+        android:layout_width="1280dp"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:text="@string/router_name"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteY="5dp" />
 
+    <RelativeLayout
+        android:id="@+id/snifferLayout"
+        android:layout_width="800dp"
+        android:background="@color/colorAccent"
+        android:layout_height="780dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="39dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView">
+
+
+
+        <TextView
+            android:id="@+id/snifferTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="@color/colorPrimary"
+            android:layout_alignParentTop="true"
+            android:gravity="center"
+            android:text="@string/sniffer"
+            android:textColor="@color/white"
+            android:layout_margin="2dp"
+            android:textSize="17sp" />
+
+        <ListView
+            android:id="@+id/packetDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="195dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="2dp"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/white"
+            android:layout_below="@+id/snifferTitle" />
+
+        <TextView
+            android:id="@+id/packetContents"
+            android:layout_width="match_parent"
+            android:layout_height="195dp"
+            android:layout_margin="2dp"
+            android:layout_below="@id/ProtocolExp"
+            android:typeface="monospace"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@color/colorPrimary"
+            android:text="@string/packetStuff"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/ProtocolExp"
+            android:layout_width="match_parent"
+            android:background="@color/colorPrimary"
+            android:layout_height="200dp"
+            android:layout_margin="2dp"
+            android:textColor="@color/white"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/packetDisplay"
+            android:text="@string/ProtocolStuff" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="480dp"
+        android:layout_height="700dp"
+        android:background="@color/colorAccent"
+        tools:layout_editor_absoluteX="516dp"
+        tools:layout_editor_absoluteY="39dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView">
+
+        <RelativeLayout
+            android:id="@+id/ArpTableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="106dp"
+            android:layout_below="@+id/AdjacencyTableLayout"
+            android:layout_centerHorizontal="true"
+            >
+
+            <TextView
+                android:id="@+id/tableTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="2dp"
+                android:background="@color/colorPrimary"
+                android:gravity="center"
+                android:text="@string/arpTable"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="142dp"
+                android:layout_margin="2dp"
+                android:layout_below="@id/tableTitle"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/white"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/AdjacencyTableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="120dp">
+
+            <TextView
+                android:id="@+id/adjacencyTableTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_gravity="center"
+                android:background="@color/colorPrimary"
+                android:textSize="17sp"
+                android:layout_margin="2dp"
+                android:gravity="center"
+                android:text="@string/adjTable" />
+
+            <ListView
+                android:id="@+id/AdjacencyTable"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_margin="2dp"
+                android:layout_below="@id/adjacencyTableTitle"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/white" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/FowardingTableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="204dp"
+            android:layout_below="@+id/ArpTableLayout"
+            android:layout_centerHorizontal="true"
+            >
+
+            <TextView
+                android:id="@+id/forwardingTableTitle"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:layout_margin="2dp"
+                android:text="@string/forwardingTable" />
+
+            <ListView
+                android:id="@+id/forwardingTable"
+                android:layout_width="match_parent"
+                android:layout_below="@id/forwardingTableTitle"
+                android:layout_height="173dp"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:layout_margin="2dp"
+                android:background="@color/colorPrimary"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="203dp"
+            android:layout_below="@+id/FowardingTableLayout"
+            android:layout_centerHorizontal="true"
+            >
+
+
+            <TextView
+                android:id="@+id/routingTableTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:gravity="center"
+                android:background="@color/colorPrimary"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="2dp"
+                android:text="@string/routingable" />
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="168dp"
+                android:layout_below="@+id/routingTableTitle"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:layout_margin="2dp"
+                android:background="@color/colorPrimary"
+                android:layout_centerHorizontal="true" />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
