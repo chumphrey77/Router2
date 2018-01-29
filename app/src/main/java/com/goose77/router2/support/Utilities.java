@@ -21,7 +21,7 @@ public class Utilities {
         int numberOfCharacters = byteCount*2;
         int differenceInNumOfCharacters = numberOfCharacters - inputStringLength;
         String paddingCharacters = "";
-        String outputString ="";
+        String outputString =inputString;
         if(differenceInNumOfCharacters > 0){
             for(int i =0; i < differenceInNumOfCharacters; i++){
                 paddingCharacters = paddingCharacters + "0";
@@ -29,5 +29,28 @@ public class Utilities {
             outputString = paddingCharacters+inputString;
         }
         return outputString;
+    }
+
+    public String toAsciiString(String hexStr) {
+        StringBuilder output = new StringBuilder("");
+
+        for (int i = 0; i < hexStr.length(); i += 2) {
+            String str = hexStr.substring(i, i + 2);
+            output.append((char) Integer.parseInt(str, 16));
+        }
+        return output.toString();
+    }
+
+    public static String toHexString(String s){
+        String hexString ="";
+        char[]  ch = hexString.toCharArray();
+
+        StringBuilder builder = new StringBuilder();
+
+        for(char c : ch){
+            int i = (int)c;
+            builder.append(Integer.toHexString(i).toUpperCase());
+        }
+        return hexString;
     }
 }
