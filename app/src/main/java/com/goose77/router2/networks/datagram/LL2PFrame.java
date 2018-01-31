@@ -75,9 +75,10 @@ public class LL2PFrame implements Datagram {
      */
     @Override
     public String toTransmissionString() {
-        String transmissionString = destinationAddress.toTransmissionString() + sourceAddress.toTransmissionString()
+        String transmissionString;
+        return  transmissionString = destinationAddress.toTransmissionString() + sourceAddress.toTransmissionString()
                                     + type.toTransmissionString() + payload.toTransmissionString() + crc.toTransmissionString();
-        return null;
+
     }
 
     /**
