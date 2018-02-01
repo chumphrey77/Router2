@@ -1,4 +1,4 @@
-package com.goose77.router2.Router2.networks.networks.datagram_fields;
+package com.goose77.router2.Router2.networks.datagram_fields;
 
 import com.goose77.router2.Router2.networks.datagram.TextDatagram;
 import com.goose77.router2.Router2.networks.datagram.HeaderField;

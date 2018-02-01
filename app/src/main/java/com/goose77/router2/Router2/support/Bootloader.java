@@ -7,10 +7,10 @@ import com.goose77.router2.Router2.UI.UIManager;
 
 import com.goose77.router2.Router2.networks.Constants;
 import com.goose77.router2.Router2.networks.datagram.LL2PFrame;
-import com.goose77.router2.Router2.networks.networks.datagram_fields.CRC;
-import com.goose77.router2.Router2.networks.networks.datagram_fields.DatagramPayloadField;
-import com.goose77.router2.Router2.networks.networks.datagram_fields.LL2PAddressField;
-import com.goose77.router2.Router2.networks.networks.datagram_fields.LL2PTypeField;
+import com.goose77.router2.Router2.networks.datagram_fields.CRC;
+import com.goose77.router2.Router2.networks.datagram_fields.DatagramPayloadField;
+import com.goose77.router2.Router2.networks.datagram_fields.LL2PAddressField;
+import com.goose77.router2.Router2.networks.datagram_fields.LL2PTypeField;
 import com.goose77.router2.Router2.networks.tableRecord.AdjacencyRecord;
 
 
