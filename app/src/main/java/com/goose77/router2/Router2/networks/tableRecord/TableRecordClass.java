@@ -1,9 +1,6 @@
-package com.goose77.router2.networks.tableRecord;
-
-import com.goose77.router2.support.Utilities;
+package com.goose77.router2.Router2.networks.tableRecord;
 
 import java.util.Calendar;
-import java.util.Date;
 
 /**
  * Created by goose on 1/25/2018.

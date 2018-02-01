@@ -1,11 +1,11 @@
-package com.goose77.router2.UI;
+package com.goose77.router2.Router2.UI;
 
 import android.app.Activity;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.goose77.router2.support.Bootloader;
-import com.goose77.router2.support.ParentActivity;
+import com.goose77.router2.Router2.support.Bootloader;
+import com.goose77.router2.Router2.support.ParentActivity;
 
 import java.util.Observable;
 import java.util.Observer;

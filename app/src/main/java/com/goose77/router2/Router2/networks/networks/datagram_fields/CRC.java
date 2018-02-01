@@ -1,8 +1,8 @@
-package com.goose77.router2.networks.networks.datagram_fields;
+package com.goose77.router2.Router2.networks.networks.datagram_fields;
 
-import com.goose77.router2.networks.Constants;
-import com.goose77.router2.networks.headerFields.HeaderField;
-import com.goose77.router2.support.Utilities;
+import com.goose77.router2.Router2.networks.Constants;
+import com.goose77.router2.Router2.networks.datagram.HeaderField;
+import com.goose77.router2.Router2.support.Utilities;
 
 /**
  * Created by goose on 1/25/2018.

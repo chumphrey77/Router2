@@ -1,13 +1,11 @@
-package com.goose77.router2.networks.datagram;
+package com.goose77.router2.Router2.networks.datagram;
 
-import com.goose77.router2.networks.Constants;
-import com.goose77.router2.networks.headerFields.HeaderField;
-import com.goose77.router2.networks.networks.datagram_fields.CRC;
-import com.goose77.router2.networks.networks.datagram_fields.DatagramPayloadField;
-import com.goose77.router2.networks.networks.datagram_fields.LL2PAddressField;
-import com.goose77.router2.networks.networks.datagram_fields.LL2PTypeField;
-import com.goose77.router2.support.Factory;
-import com.goose77.router2.support.HeaderFieldFactory;
+import com.goose77.router2.Router2.networks.Constants;
+import com.goose77.router2.Router2.networks.networks.datagram_fields.CRC;
+import com.goose77.router2.Router2.networks.networks.datagram_fields.DatagramPayloadField;
+import com.goose77.router2.Router2.networks.networks.datagram_fields.LL2PAddressField;
+import com.goose77.router2.Router2.networks.networks.datagram_fields.LL2PTypeField;
+import com.goose77.router2.Router2.support.HeaderFieldFactory;
 
 /**
  * Created by goose on 1/25/2018.
@@ -108,11 +106,11 @@ public class LL2PFrame implements Datagram {
     public LL2PFrame(byte[] frame){
         HeaderFieldFactory factory = HeaderFieldFactory.getInstance();
         String frameString = new String(frame);
-        String destAddrString = frameString.substring(Constants.DEST_ADDR_OFFSET, (Constants.DEST_ADDR_OFFSET + Constants.ADDR_LENGTh)*2);
-        String srcAddrString = frameString.substring(Constants.SRC_ADDR_OFFSET*2, (Constants.SRC_ADDR_OFFSET+Constants.ADDR_LENGTh)*2);
-        String typeString = frameString.substring(Constants.TYPE_OFFSET*2, (Constants.TYPE_OFFSET+Constants.TYPE_LENGTH)*2);
-        String payloadString = frameString.substring(Constants.PAYLOAD_OFFSET*2, frame.length-Constants.CRC_OFFSET_FROM_END*2);
-        String crcString = frameString.substring(frame.length-Constants.CRC_OFFSET_FROM_END*2, frame.length);
+        String destAddrString = frameString.substring(Constants.DEST_ADDR_OFFSET, Constants.DEST_ADDR_OFFSET_BYTES + Constants.ADDR_LENGTH_BYTES);
+        String srcAddrString = frameString.substring(Constants.SRC_ADDR_OFFSET_BYTES, (Constants.SRC_ADDR_OFFSET+Constants.ADDR_LENGTH_BYTES));
+        String typeString = frameString.substring(Constants.TYPE_OFFSET_BYTES, Constants.TYPE_OFFSET+Constants.TYPE_LENGTH_BYTES);
+        String payloadString = frameString.substring(Constants.PAYLOAD_OFFSET_BYTES, frame.length-Constants.CRC_OFFSET_FROM_END_BYTES);
+        String crcString = frameString.substring(frame.length-Constants.CRC_OFFSET_FROM_END_BYTES, frame.length);
         this.destinationAddress = factory.getItem(Constants.LL2P_DEST_ADDRESS_FIELD_ID, destAddrString);
         this.sourceAddress = factory.getItem(Constants.LL2P_SOURCE_ADDRESS_FIELD_ID, srcAddrString);
         this.type =factory.getItem(Constants.LL2P_TYPE_FIELD_ID, typeString);

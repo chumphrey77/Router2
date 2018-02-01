@@ -1,6 +1,6 @@
-package com.goose77.router2.networks.tableRecord;
+package com.goose77.router2.Router2.networks.tableRecord;
 
-import com.goose77.router2.networks.Constants;
+import com.goose77.router2.Router2.networks.Constants;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -18,7 +18,7 @@ public class AdjacencyRecord extends TableRecordClass {
 
     /**
      * Secondary Constructor that takes the address as an int
-     * @param IntAddress ipAddress
+     * @param InetAddress ipAddress
      * @param Integer ll2pAddress
      */
     public AdjacencyRecord(InetAddress ipAddress, Integer ll2pAddress){

@@ -1,6 +1,6 @@
-package com.goose77.router2.networks.datagram;
+package com.goose77.router2.Router2.networks.datagram;
 
-import com.goose77.router2.support.Utilities;
+import com.goose77.router2.Router2.support.Utilities;
 
 /**
  * Created by goose on 1/26/2018.

@@ -1,10 +1,8 @@
-package com.goose77.router2.networks.networks.datagram_fields;
+package com.goose77.router2.Router2.networks.networks.datagram_fields;
 
-import android.provider.ContactsContract;
-
-import com.goose77.router2.networks.datagram.TextDatagram;
-import com.goose77.router2.networks.headerFields.HeaderField;
-import com.goose77.router2.networks.datagram.Datagram;
+import com.goose77.router2.Router2.networks.datagram.TextDatagram;
+import com.goose77.router2.Router2.networks.datagram.HeaderField;
+import com.goose77.router2.Router2.networks.datagram.Datagram;
 /**
  * Created by goose on 1/25/2018.
  */

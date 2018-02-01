@@ -1,4 +1,4 @@
-package com.goose77.router2.networks;
+package com.goose77.router2.Router2.networks;
 
 import android.util.Log;
 import java.net.Inet4Address;
@@ -32,17 +32,29 @@ public class Constants {
     //Record ID so that TableRecord factory know what kind of recrod to make
     public static final int ADJACENCY_RECORD_ID = 5776;
 
-    //Lengths (int bytes) of various fields in a frame
+    //Character length of various fields in a frame
     public static final int ADDR_LENGTh = 3;
     public static final int CRC_LENGTH = 2;
     public static final int TYPE_LENGTH = 2;
 
-    //Offset (from beginning) of packet for various fields in a frame
+    //Length of each header field in bytes
+    public static final int ADDR_LENGTH_BYTES = ADDR_LENGTh*2;
+    public static final int CRC_LENGTH_BYTES = CRC_LENGTH*2;
+    public static final int TYPE_LENGTH_BYTES = TYPE_LENGTH*2;
+
+    //Offset (from beginning) of packet for various fields in a frame in characters
     public static final int DEST_ADDR_OFFSET = 0;
     public static final int SRC_ADDR_OFFSET = 3;
     public static final int TYPE_OFFSET = 6;
     public static final int PAYLOAD_OFFSET = 8;
     public static final int CRC_OFFSET_FROM_END = 2;
+
+    //Offset lengths in bytes
+    public static final int DEST_ADDR_OFFSET_BYTES = DEST_ADDR_OFFSET*2;
+    public static final int SRC_ADDR_OFFSET_BYTES = SRC_ADDR_OFFSET*2;
+    public static final int TYPE_OFFSET_BYTES = TYPE_OFFSET*2;
+    public static final int PAYLOAD_OFFSET_BYTES = PAYLOAD_OFFSET*2;
+    public static final int CRC_OFFSET_FROM_END_BYTES = CRC_OFFSET_FROM_END*2;
 
     //Source Address for my router
     public static final String SRC_ADDR = "C4111E";
