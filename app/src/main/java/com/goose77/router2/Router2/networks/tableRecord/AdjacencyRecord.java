@@ -1,6 +1,7 @@
 package com.goose77.router2.Router2.networks.tableRecord;
 
 import com.goose77.router2.Router2.networks.Constants;
+import com.goose77.router2.Router2.support.GetIPAddress;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -43,14 +44,11 @@ public class AdjacencyRecord extends TableRecordClass {
      */
     public AdjacencyRecord(String data){
         super();
-        String ll2pAddressString = data.substring(data.length() - Constants.ADDR_LENGTh*2);
-        String ipAddressString = data.substring(0, data.length()-Constants.ADDR_LENGTh*2);
-        try {
-            this.ipAddress = InetAddress.getByName(ipAddressString);
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        }
-        this.ll2pAddress = Integer.parseInt(ll2pAddressString);
+        String ll2pAddressString = data.substring(data.length() - Constants.ADDR_LENGTH_BYTES);
+        String ipAddressString = data.substring(0, data.length()-Constants.ADDR_LENGTH_BYTES);
+        GetIPAddress nameServer = GetIPAddress.getInstance();
+        this.ipAddress = nameServer.getInetAddress(ipAddressString);
+        this.ll2pAddress = Integer.parseInt(ll2pAddressString,16);
     }
 
     /**

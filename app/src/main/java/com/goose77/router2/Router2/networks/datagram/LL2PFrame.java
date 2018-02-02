@@ -108,7 +108,7 @@ public class LL2PFrame implements Datagram {
         String frameString = new String(frame);
         String destAddrString = frameString.substring(Constants.DEST_ADDR_OFFSET, Constants.DEST_ADDR_OFFSET_BYTES + Constants.ADDR_LENGTH_BYTES);
         String srcAddrString = frameString.substring(Constants.SRC_ADDR_OFFSET_BYTES, (Constants.SRC_ADDR_OFFSET+Constants.ADDR_LENGTH_BYTES));
-        String typeString = frameString.substring(Constants.TYPE_OFFSET_BYTES, Constants.TYPE_OFFSET+Constants.TYPE_LENGTH_BYTES);
+        String typeString = frameString.substring(Constants.TYPE_OFFSET_BYTES, Constants.TYPE_OFFSET_BYTES+Constants.TYPE_LENGTH_BYTES);
         String payloadString = frameString.substring(Constants.PAYLOAD_OFFSET_BYTES, frame.length-Constants.CRC_OFFSET_FROM_END_BYTES);
         String crcString = frameString.substring(frame.length-Constants.CRC_OFFSET_FROM_END_BYTES, frame.length);
         this.destinationAddress = factory.getItem(Constants.LL2P_DEST_ADDRESS_FIELD_ID, destAddrString);

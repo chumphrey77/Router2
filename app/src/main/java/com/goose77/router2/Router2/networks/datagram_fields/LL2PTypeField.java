@@ -79,6 +79,6 @@ public class LL2PTypeField implements HeaderField {
      * Creates the explanation field
      */
     private void setExplanation(){
-        this.explanation = "The type is: " + toHexString();
+        this.explanation = "The type is: " + toHexString() + "\n";
     }
 }

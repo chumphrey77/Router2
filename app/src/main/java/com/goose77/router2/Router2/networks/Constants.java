@@ -19,8 +19,8 @@ public class Constants {
     public static final String IP_ADDRESS;
 
     // These are strings used in debugging messages or messages sent to the log file.
-    public static final String routerName = "Magrathea";
-    public static final String logTag = "MAGRATHEA: ";
+    public static final String routerName = "Goose";
+    public static final String logTag = "GOOSE: ";
 
     // Header field ID so, HeaderFieldFactory knows what field to make
     public static final int LL2P_SOURCE_ADDRESS_FIELD_ID = 2778;
@@ -68,6 +68,15 @@ public class Constants {
     public static final int LL2P_TYPE_IS_ARP_REQUEST = 8006;
     public static final int LL2P_TYPE_IS_ARP_REPLY = 8007;
     public static final int LL2P_TYPE_IS_TEXT = 8008;
+
+    //Offsets for Table Factory
+    public static final int INET_OFFSET = 0;
+    public static final int IP_ADDR_OFFSET_FROM_END = 6;
+
+    //UDP port
+    public static final int UDP_PORT = 49999;
+
+
     static {
         IP_ADDRESS = getLocalIpAddress();
         Log.i(Constants.logTag, "IP Address is "+IP_ADDRESS); // this will show up in the log file

@@ -13,7 +13,7 @@ import java.net.InetAddress;
 /**
  * Factory for the creation of various record types
  */
-public class TableRecordFactory implements Factory<TableRecord,Object[]> {
+public class TableRecordFactory implements Factory<TableRecord,String> {
     static TableRecordFactory ourInstance = new TableRecordFactory();
     /**
      * Public method to get the desired item of the specified type
@@ -23,9 +23,9 @@ public class TableRecordFactory implements Factory<TableRecord,Object[]> {
      * @return object - This object will be of the specified U data type
      */
     @Override
-    public <U extends TableRecord>U getItem(int type, Object... data) {
+    public <U extends TableRecord>U getItem(int type, String data) {
         if(type == Constants.ADJACENCY_RECORD_ID){
-            return (U)new AdjacencyRecord((InetAddress) data[0], (String)data[1]);
+            return (U)new AdjacencyRecord(data);
         }
 
         return null;

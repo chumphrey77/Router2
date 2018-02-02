@@ -4,6 +4,8 @@ package com.goose77.router2.Router2.support;
  * Created by goose on 1/11/2018.
  */
 
+import java.util.Calendar;
+
 /**
  * Class for holding useful methods that will be used across the application
  */
@@ -16,6 +18,8 @@ public class Utilities {
      * @param byteCount The number of bytes that inputString needs to be
      * @return outputString The padded string
      */
+    public static long baseDateInSeconds = Calendar.getInstance().getTimeInMillis()/1000;
+
     static public String padHexString(String inputString, int byteCount){
         int inputStringLength = inputString.length();
         int numberOfCharacters = byteCount*2;
@@ -52,5 +56,9 @@ public class Utilities {
             builder.append(Integer.toHexString(i).toUpperCase());
         }
         return hexString;
+    }
+
+    public int  getTimeInSeconds(){
+        return (int) (Calendar.getInstance().getTimeInMillis()/1000 - baseDateInSeconds);
     }
 }
