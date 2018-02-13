@@ -26,7 +26,7 @@ public class TableRecordClass implements TableRecord {
      * @return Integer key
      */
     @Override
-    public int getKey() {
+    public Integer getKey() {
         return 0;
     }
 

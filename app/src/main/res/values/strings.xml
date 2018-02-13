@@ -9,5 +9,12 @@
     <string name="forwardingTable">Forwarding Table</string>
     <string name="routingable">Routing Table</string>
     <string name="IPMenuItem">Show IP Address</string>
+    <string name="AddAdjacency">Add Adjacency</string>
     <string name="ProtocolStuff">Protocol Stuff</string>
+    <string name="LL2PAddressEditTextHint">C4111E</string>
+    <string name="IpAddressEditTextHint">10.30.31.64</string>
+    <string name="InsertIpTextView">Insert IP Address Below</string>
+    <string name="InsertLL2PTextView">Insert Hex LL2P Address Below</string>
+    <string name="AddAdjacencyButtonText">Add Adjacency</string>
+    <string name="CancelButtonText">Cancel Button</string>
 </resources>

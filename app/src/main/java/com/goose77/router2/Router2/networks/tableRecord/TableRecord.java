@@ -12,7 +12,7 @@ public interface TableRecord {
      * Returns the key for this record
      * @return Integer key
      */
-    int getKey();
+    Integer getKey();
 
     /**
      * Returns how many seconds have passed since the record was referenced

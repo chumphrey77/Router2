@@ -2,6 +2,7 @@ package com.goose77.router2.Router2.networks.tableRecord;
 
 import com.goose77.router2.Router2.networks.Constants;
 import com.goose77.router2.Router2.support.GetIPAddress;
+import com.goose77.router2.Router2.support.Utilities;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -14,13 +15,13 @@ import java.net.UnknownHostException;
  * Encapsulates an Adjacency table record
  */
 public class AdjacencyRecord extends TableRecordClass {
-    private int ll2pAddress;
+    private Integer ll2pAddress;
     private InetAddress ipAddress;
 
     /**
      * Secondary Constructor that takes the address as an int
-     * @param InetAddress ipAddress
-     * @param Integer ll2pAddress
+     * @param  ipAddress
+     * @param  ll2pAddress
      */
     public AdjacencyRecord(InetAddress ipAddress, Integer ll2pAddress){
         super();
@@ -30,8 +31,8 @@ public class AdjacencyRecord extends TableRecordClass {
 
     /**
      * Constructor that takes the address as a string
-     * @param InetAddress ipAddress
-     * @param String ll2pAddressString
+     * @param  ipAddress
+     * @param ll2pAddressString
      */
     public AdjacencyRecord(InetAddress ipAddress, String ll2pAddressString){
         super();
@@ -55,7 +56,7 @@ public class AdjacencyRecord extends TableRecordClass {
      * Returns the key for this record
      * @return Integer
      */
-    public int getKey(){
+    public Integer getKey(){
         return ll2pAddress;
     }
 
@@ -73,19 +74,19 @@ public class AdjacencyRecord extends TableRecordClass {
      */
     public String toString(){
         String string;
-        string = "LL2P Address: 0x" + ll2pAddress + "; IP Address: " + ipAddress.toString() + "\n";
+        string = "LL2P Address: " + Integer.toHexString(ll2pAddress) + "; IP Address: " + ipAddress.toString().substring(1) + "\n";
         return string;
     }
 
-    public int getLl2pAddress() {
-        return ll2pAddress;
+    public String getLl2pAddress() {
+        return Integer.toHexString(ll2pAddress);
     }
 
     public InetAddress getIpAddress() {
         return ipAddress;
     }
 
-    public void setLl2pAddress(int ll2pAddress) {
+    public void setLl2pAddress(Integer ll2pAddress) {
         this.ll2pAddress = ll2pAddress;
     }
 

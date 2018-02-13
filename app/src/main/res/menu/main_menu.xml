@@ -6,5 +6,11 @@
         android:title="@string/IPMenuItem">
 
     </item>
+    <item
+        android:id="@+id/AddAdjacency"
+        android:orderInCategory="110"
+        android:title="@string/AddAdjacency">
+
+    </item>
 
 </menu>

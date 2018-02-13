@@ -51,6 +51,7 @@ public class Bootloader extends Observable {
         addObserver(UIManager.getInstance());
         addObserver(LL1Daemon.getInstance());
         addObserver(FrameLogger.getInstance());
+        addObserver(UIManager.getInstance().getTableUI());
         setChanged();
         notifyObservers();
 
@@ -93,7 +94,7 @@ public class Bootloader extends Observable {
         }*/
         // Lab 3 Tests
 
-        TableRecordFactory tableRecordFactory = TableRecordFactory.getInstance();
+      /*  TableRecordFactory tableRecordFactory = TableRecordFactory.getInstance();
         GetIPAddress nameServer = GetIPAddress.getInstance();
         InetAddress inet = nameServer.getInetAddress("10.1.1.1");
         AdjacencyRecord adjacencyRecord = tableRecordFactory.getItem(Constants.ADJACENCY_RECORD_ID, "10.1.1.1"+"c4111e");
@@ -122,8 +123,8 @@ public class Bootloader extends Observable {
         CRC crc = headerFactory.getItem(Constants.CRC_ID, "0001");
 
         LL2PFrame frame = new LL2PFrame(destAddr, srcAddr, type, payload, crc);
-        daemon.addAdjacencyTable("10.30.35.84", "112233");
-        daemon.sendFrame(frame);
+        daemon.addAdjacencyTable("192.168.86.27", "112233");
+        daemon.sendFrame(frame);*/
 
     }
 }

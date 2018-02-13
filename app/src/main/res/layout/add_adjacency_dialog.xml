@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="250dp"
+    android:layout_gravity="center"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="300dp"
+    android:layout_height="250dp"
+    android:gravity="center">
+    <TextView
+        android:id="@+id/IPAddressTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/InsertIpTextView"
+        tools:layout_editor_absoluteX="230dp"
+        tools:layout_editor_absoluteY="126dp"
+        android:layout_gravity="center"/>
+
+    <EditText
+        android:id="@+id/ipAddressEditTextView"
+        android:layout_width="150dp"
+        android:layout_gravity="center"
+        android:layout_height="42dp"
+        android:hint="@string/IpAddressEditTextHint"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="216dp" />
+
+    <TextView
+        android:id="@+id/LL2PTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/InsertLL2PTextView"
+        tools:layout_editor_absoluteX="237dp"
+        tools:layout_editor_absoluteY="311dp" />
+
+    <EditText
+        android:id="@+id/ll2pEditTextView"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:hint="@string/LL2PAddressEditTextHint"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="401dp" />
+    <Button
+        android:id="@+id/addAdjacencyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/AddAdjacencyButtonText"
+        android:layout_gravity="center"
+        tools:layout_editor_absoluteX="237dp"
+        tools:layout_editor_absoluteY="538dp" />
+
+    <Button
+        android:id="@+id/cancelButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/CancelButtonText"
+        android:layout_gravity="center"
+        tools:layout_editor_absoluteX="237dp"
+        tools:layout_editor_absoluteY="598dp" />
+</LinearLayout>
+</android.support.constraint.ConstraintLayout>

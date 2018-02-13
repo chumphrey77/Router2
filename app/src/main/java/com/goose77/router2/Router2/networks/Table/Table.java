@@ -69,7 +69,7 @@ public class Table extends Observable implements TableInterface {
      */
     @Override
     public void removeItem(Integer key) {
-        for(TableRecord  record: table){
+        for(TableRecord record: table){
             if(record.getKey() == key){
                 table.remove(record);
             }
@@ -85,7 +85,7 @@ public class Table extends Observable implements TableInterface {
     @Override
     public TableRecord getItem(Integer key) throws LabException {
         for(TableRecord record : table){
-            if(record.getKey() == key){
+            if(record.getKey().equals(key)){
                 return record;
             }
         }
@@ -103,5 +103,9 @@ public class Table extends Observable implements TableInterface {
     public void updateDispaly(){
         setChanged();
         notifyObservers();
+    }
+
+    public List<TableRecord> getTableAsArrayList() {
+        return (ArrayList<TableRecord>)table;
     }
 }

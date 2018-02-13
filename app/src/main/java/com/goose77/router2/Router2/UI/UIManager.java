@@ -24,12 +24,13 @@ public class UIManager implements Observer {
     private static final UIManager ourInstance = new UIManager();
     private Activity parentActivity = ParentActivity.getParentActivity();
     private Context context;
+    private TableUI tableUI;
 
     /**
      * Empty Constructor
      */
     private UIManager(){
-
+         tableUI = new TableUI();
     }
 
     /**
@@ -79,5 +80,13 @@ public class UIManager implements Observer {
             context = parentActivity.getBaseContext();
         }
         setUpWidgets();
+    }
+
+    public TableUI getTableUI() {
+        return tableUI;
+    }
+
+    private void setTableUI(TableUI tableUI) {
+        this.tableUI = tableUI;
     }
 }

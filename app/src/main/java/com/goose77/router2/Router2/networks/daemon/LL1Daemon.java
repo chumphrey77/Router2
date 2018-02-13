@@ -103,6 +103,10 @@ public class LL1Daemon extends Observable implements Observer {
         adjacencyTable.addItem(record);
     }
 
+    public void addAdjacencyTable(AdjacencyRecord record){
+        adjacencyTable.addItem(record);
+    }
+
 
     /**
      * Use the adjacency table to get the adjacenecyRecord and retrieve the iNet object from it
@@ -113,7 +117,7 @@ public class LL1Daemon extends Observable implements Observer {
      */
     public void sendFrame(LL2PFrame ll2p){
         try {
-            AdjacencyRecord adjacentRouter = (AdjacencyRecord) adjacencyTable.getItem(Integer.parseInt(ll2p.getDestinationAddress().toTransmissionString(), 16));
+            AdjacencyRecord adjacentRouter = (AdjacencyRecord) adjacencyTable.getItem(ll2p.getDestinationAddress().getAddress());
             InetAddress ipAddress = adjacentRouter.getIpAddress();
             DatagramPacket sendPacket = new DatagramPacket(ll2p.toTransmissionString().getBytes(), ll2p.toTransmissionString().length(),
                     ipAddress,

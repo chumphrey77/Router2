@@ -8,7 +8,7 @@ import com.goose77.router2.Router2.support.Utilities;
  */
 
 public class LL2PAddressField implements HeaderField {
-    private int address;
+    private Integer address;
     private boolean isSourceAddress;
     private String explanation;
 
@@ -58,7 +58,7 @@ public class LL2PAddressField implements HeaderField {
      * @param Integer address
      * @param boolean isSource
      */
-    public LL2PAddressField(int address, boolean isSource){
+    public LL2PAddressField(Integer address, boolean isSource){
         this.address = address;
         this.isSourceAddress = isSource;
         this.setExplanation();
@@ -90,5 +90,9 @@ public class LL2PAddressField implements HeaderField {
      */
     public boolean isSourceAddressField(){
         return this.isSourceAddress;
+    }
+
+    public Integer getAddress() {
+        return address;
     }
 }
