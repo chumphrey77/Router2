@@ -3,6 +3,7 @@ package com.goose77.router2.Router2.networks.datagram_fields;
 import com.goose77.router2.Router2.networks.datagram.TextDatagram;
 import com.goose77.router2.Router2.networks.datagram.HeaderField;
 import com.goose77.router2.Router2.networks.datagram.Datagram;
+import com.goose77.router2.Router2.support.Utilities;
 /**
  * Created by goose on 1/25/2018.
  */
@@ -70,7 +71,7 @@ public class DatagramPayloadField implements HeaderField {
     /**
      * Primary constructor that takes in a string and creates a TextDatagram object
      * that is what will actually be seen as the payload
-     * @param String text
+     * @param  text
      */
     public DatagramPayloadField(String text){
         this.datagram = new TextDatagram(text);

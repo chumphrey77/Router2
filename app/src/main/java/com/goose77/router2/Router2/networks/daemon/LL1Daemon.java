@@ -35,8 +35,7 @@ public class LL1Daemon extends Observable implements Observer {
     private UIManager uiManager;
     private TableRecordFactory tableRecordFactory;
     private SendLayer1Frame frameTransmitter;
-   // private  LL2PDaemon ll2PDaemon = LL2PDaemon.getInstance();
-    //todo implement LL2PDaemon
+    private  LL2Daemon ll2Daemon;
 
     /**
      * Default constructor. creates the adjacency table
@@ -68,16 +67,16 @@ public class LL1Daemon extends Observable implements Observer {
     public void update(Observable observable, Object o) {
         nameServer = GetIPAddress.getInstance();
         tableRecordFactory = TableRecordFactory.getInstance();
-        ourInstance.addObserver(FrameLogger.getInstance());
+        addObserver(FrameLogger.getInstance());
         uiManager = UIManager.getInstance();
-        //todo save singleton reference to LL2PDaemon
-        frameTransmitter = new SendLayer1Frame();
+        ll2Daemon = LL2Daemon.getInstance();
+
         new ReceiveLayer1Frame().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
     /**
      * Remove a router node from the Adjacency table
-     * @param AdjacencyRecord recordToRemove
+     * @param  recordToRemove
      */
     public void removeAdjacency(AdjacencyRecord recordToRemove){
         try {
@@ -117,6 +116,7 @@ public class LL1Daemon extends Observable implements Observer {
      */
     public void sendFrame(LL2PFrame ll2p){
         try {
+            frameTransmitter = new SendLayer1Frame();
             AdjacencyRecord adjacentRouter = (AdjacencyRecord) adjacencyTable.getItem(ll2p.getDestinationAddress().getAddress());
             InetAddress ipAddress = adjacentRouter.getIpAddress();
             DatagramPacket sendPacket = new DatagramPacket(ll2p.toTransmissionString().getBytes(), ll2p.toTransmissionString().length(),
@@ -140,8 +140,9 @@ public class LL1Daemon extends Observable implements Observer {
     public void processLayer1FrameBytes(byte[] frame){
         LL2PFrame layer2Frame = new LL2PFrame(frame);
         Log.i(Constants.logTag, layer2Frame.toProtocolExplanationString());
+        setChanged();
         notifyObservers(layer2Frame);
 
-        //todo pass the frame to the layer 2 daemon
+       ll2Daemon.processLL2PFrame(layer2Frame);
     }
 }

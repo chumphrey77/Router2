@@ -20,7 +20,8 @@ public class TextDatagram implements Datagram {
      */
     @Override
     public String toHexString() {
-        return Utilities.toHexString(payload);
+        //String hexString = Utilities.toHexString(payload);
+        return payload;
     }
 
     /**
@@ -30,7 +31,7 @@ public class TextDatagram implements Datagram {
      */
     @Override
     public String toProtocolExplanationString() {
-        return "The payload is "+payload +"\n";
+        return "The payload is: \""+payload +"\" \n";
     }
 
     /**
@@ -60,7 +61,7 @@ public class TextDatagram implements Datagram {
 
     /**
      * Constructor that sets the text for the payload
-     * @param String payload
+     * @param  payload
      */
     public TextDatagram(String payload){
         this.payload = payload;

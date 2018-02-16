@@ -57,9 +57,8 @@ public class LL2PFrame implements Datagram {
      */
     @Override
     public String toSummaryString() {
-        String summaryString = "";
-        //todo implement summaryString
-        return summaryString;
+
+        return toTransmissionString().substring(0,20) + "...";
     }
 
     /**
@@ -73,8 +72,7 @@ public class LL2PFrame implements Datagram {
      */
     @Override
     public String toTransmissionString() {
-        String transmissionString;
-        return  transmissionString = destinationAddress.toTransmissionString() + sourceAddress.toTransmissionString()
+        return  destinationAddress.toTransmissionString() + sourceAddress.toTransmissionString()
                                     + type.toTransmissionString() + payload.toTransmissionString() + crc.toTransmissionString();
 
     }
@@ -107,7 +105,7 @@ public class LL2PFrame implements Datagram {
         HeaderFieldFactory factory = HeaderFieldFactory.getInstance();
         String frameString = new String(frame);
         String destAddrString = frameString.substring(Constants.DEST_ADDR_OFFSET, Constants.DEST_ADDR_OFFSET_BYTES + Constants.ADDR_LENGTH_BYTES);
-        String srcAddrString = frameString.substring(Constants.SRC_ADDR_OFFSET_BYTES, (Constants.SRC_ADDR_OFFSET+Constants.ADDR_LENGTH_BYTES));
+        String srcAddrString = frameString.substring(Constants.SRC_ADDR_OFFSET_BYTES, (Constants.SRC_ADDR_OFFSET_BYTES+Constants.ADDR_LENGTH_BYTES));
         String typeString = frameString.substring(Constants.TYPE_OFFSET_BYTES, Constants.TYPE_OFFSET_BYTES+Constants.TYPE_LENGTH_BYTES);
         String payloadString = frameString.substring(Constants.PAYLOAD_OFFSET_BYTES, frame.length-Constants.CRC_OFFSET_FROM_END_BYTES);
         String crcString = frameString.substring(frame.length-Constants.CRC_OFFSET_FROM_END_BYTES, frame.length);

@@ -47,15 +47,15 @@ public class Utilities {
 
     public static String toHexString(String s){
         String hexString ="";
-        char[]  ch = hexString.toCharArray();
+        char[]  ch = s.toCharArray();
 
         StringBuilder builder = new StringBuilder();
 
         for(char c : ch){
-            int i = (int)c;
-            builder.append(Integer.toHexString(i).toUpperCase());
+            Integer i = (int)c;
+            builder.append(Integer.toHexString(i));
         }
-        return hexString;
+        return builder.toString();
     }
 
     public int  getTimeInSeconds(){

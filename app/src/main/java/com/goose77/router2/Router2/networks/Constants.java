@@ -62,7 +62,7 @@ public class Constants {
     //IDs for different types of packets
     public static final int LL2P_TYPE_IS_LL3P = 8001;
     public static final int LL2P_TYPE_IS_RESERVED = 8002;
-    public static final int LL2P_IS_LRP = 8003;
+    public static final int LL2P_TYPE_IS_LRP = 8003;
     public static final int LL2P_TYPE_IS_ECHO_REQUEST = 8004;
     public static final int LL2P_TYPE_IS_ECHO_REPLY = 8005;
     public static final int LL2P_TYPE_IS_ARP_REQUEST = 8006;

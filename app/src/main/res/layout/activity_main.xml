@@ -15,12 +15,12 @@
         android:background="@color/colorAccent"
         android:gravity="center"
         android:text="@string/router_name"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.568"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteY="5dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <RelativeLayout
         android:id="@+id/snifferLayout"
@@ -44,7 +44,7 @@
             android:layout_alignParentTop="true"
             android:gravity="center"
             android:text="@string/sniffer"
-            android:textColor="@color/white"
+            android:textColor="@color/mainText"
             android:layout_margin="2dp"
             android:textSize="17sp" />
 
@@ -56,7 +56,7 @@
             android:layout_alignParentStart="true"
             android:layout_margin="2dp"
             android:background="@color/colorPrimary"
-            android:textColor="@color/white"
+            android:textColor="@color/mainText"
             android:layout_below="@+id/snifferTitle" />
 
         <TextView
@@ -64,13 +64,14 @@
             android:layout_width="match_parent"
             android:layout_height="195dp"
             android:layout_margin="2dp"
+            android:textSize="18sp"
             android:layout_below="@id/ProtocolExp"
             android:typeface="monospace"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:background="@color/colorPrimary"
             android:text="@string/packetStuff"
-            android:textColor="@color/white" />
+            android:textColor="@color/mainText" />
 
         <TextView
             android:id="@+id/ProtocolExp"
@@ -78,7 +79,8 @@
             android:background="@color/colorPrimary"
             android:layout_height="200dp"
             android:layout_margin="2dp"
-            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textColor="@color/mainText"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/packetDisplay"
@@ -113,7 +115,7 @@
                 android:background="@color/colorPrimary"
                 android:gravity="center"
                 android:text="@string/arpTable"
-                android:textColor="@color/white"
+                android:textColor="@color/mainText"
                 android:textSize="17sp" />
 
             <ListView
@@ -122,19 +124,20 @@
                 android:layout_margin="2dp"
                 android:layout_below="@id/tableTitle"
                 android:background="@color/colorPrimary"
-                android:textColor="@color/white"/>
+                android:textColor="@color/mainText"/>
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/AdjacencyTableLayout"
             android:layout_width="match_parent"
+            android:textColor="@color/mainText"
             android:layout_height="120dp">
 
             <TextView
                 android:id="@+id/adjacencyTableTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
+                android:textColor="@color/mainText"
                 android:layout_gravity="center"
                 android:background="@color/colorPrimary"
                 android:textSize="17sp"
@@ -149,7 +152,7 @@
                 android:layout_margin="2dp"
                 android:layout_below="@id/adjacencyTableTitle"
                 android:background="@color/colorPrimary"
-                android:textColor="@color/white" />
+                 />
         </RelativeLayout>
 
         <RelativeLayout
@@ -168,7 +171,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:background="@color/colorPrimary"
-                android:textColor="@color/white"
+                android:textColor="@color/mainText"
                 android:textSize="17sp"
                 android:layout_margin="2dp"
                 android:text="@string/forwardingTable" />
@@ -178,7 +181,7 @@
                 android:layout_width="match_parent"
                 android:layout_below="@id/forwardingTableTitle"
                 android:layout_height="173dp"
-                android:textColor="@color/white"
+                android:textColor="@color/mainText"
                 android:textSize="15sp"
                 android:layout_margin="2dp"
                 android:background="@color/colorPrimary"
@@ -198,7 +201,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:textColor="@color/white"
+                android:textColor="@color/mainText"
                 android:textSize="17sp"
                 android:gravity="center"
                 android:background="@color/colorPrimary"
@@ -210,7 +213,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="168dp"
                 android:layout_below="@+id/routingTableTitle"
-                android:textColor="@color/white"
+                android:textColor="@color/mainText"
                 android:textSize="15sp"
                 android:layout_margin="2dp"
                 android:background="@color/colorPrimary"

@@ -1,9 +1,15 @@
 package com.goose77.router2.Router2.UI;
 
 import android.app.Activity;
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
+import com.goose77.router2.R;
 import com.goose77.router2.Router2.networks.Constants;
 import com.goose77.router2.Router2.networks.Table.TableInterface;
 import com.goose77.router2.Router2.networks.daemon.LL1Daemon;
@@ -17,6 +23,8 @@ import com.goose77.router2.Router2.networks.tableRecord.AdjacencyRecord;
 import com.goose77.router2.Router2.networks.tableRecord.TableRecord;
 import com.goose77.router2.Router2.support.HeaderFieldFactory;
 import com.goose77.router2.Router2.support.LabException;
+
+import java.util.ArrayList;
 
 /**
  * Created by goose on 2/8/2018.
@@ -74,4 +82,9 @@ public class AdjacencyTableUI extends SingleTableUI{
             return false;
         }
     };
+
+
 }
+
+
+

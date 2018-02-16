@@ -8,6 +8,7 @@ import com.goose77.router2.Router2.UI.UIManager;
 import com.goose77.router2.Router2.networks.Constants;
 import com.goose77.router2.Router2.networks.Table.Table;
 import com.goose77.router2.Router2.networks.daemon.LL1Daemon;
+import com.goose77.router2.Router2.networks.daemon.LL2Daemon;
 import com.goose77.router2.Router2.networks.datagram.LL2PFrame;
 import com.goose77.router2.Router2.networks.datagram_fields.CRC;
 import com.goose77.router2.Router2.networks.datagram_fields.DatagramPayloadField;
@@ -50,8 +51,11 @@ public class Bootloader extends Observable {
         ParentActivity.setParentActivity(parentActivity);
         addObserver(UIManager.getInstance());
         addObserver(LL1Daemon.getInstance());
+        addObserver(UIManager.getInstance().getSnifferUI());
+        FrameLogger.getInstance().addObserver(UIManager.getInstance().getSnifferUI());
         addObserver(FrameLogger.getInstance());
         addObserver(UIManager.getInstance().getTableUI());
+        addObserver(LL2Daemon.getInstance());
         setChanged();
         notifyObservers();
 

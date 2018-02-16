@@ -25,12 +25,14 @@ public class UIManager implements Observer {
     private Activity parentActivity = ParentActivity.getParentActivity();
     private Context context;
     private TableUI tableUI;
+    private SnifferUI snifferUI;
 
     /**
      * Empty Constructor
      */
     private UIManager(){
          tableUI = new TableUI();
+         snifferUI = new SnifferUI();
     }
 
     /**
@@ -88,5 +90,9 @@ public class UIManager implements Observer {
 
     private void setTableUI(TableUI tableUI) {
         this.tableUI = tableUI;
+    }
+
+    public SnifferUI getSnifferUI(){
+        return snifferUI;
     }
 }

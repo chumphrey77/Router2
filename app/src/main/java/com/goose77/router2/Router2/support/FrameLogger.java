@@ -1,5 +1,6 @@
 package com.goose77.router2.Router2.support;
 
+import com.goose77.router2.Router2.UI.SnifferUI;
 import com.goose77.router2.Router2.networks.daemon.LL1Daemon;
 import com.goose77.router2.Router2.networks.datagram.LL2PFrame;
 
@@ -36,8 +37,7 @@ public class FrameLogger extends Observable implements Observer {
     @Override
     public void update(Observable observable, Object o) {
         if(observable instanceof Bootloader){
-            //todo addObserver SnifferUI
-            //  ourInstance.addObserver((SnifferUI) o);
+
         }
         else if(observable instanceof LL1Daemon){
             if(o instanceof LL2PFrame){
@@ -48,7 +48,12 @@ public class FrameLogger extends Observable implements Observer {
         }
     }
 
+    public ArrayList<LL2PFrame> getFrameList(){
+        return frameList;
+    }
+
     public static FrameLogger getInstance(){
         return ourInstance;
     }
+
 }
