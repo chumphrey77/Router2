@@ -59,7 +59,7 @@ public class LL2PTypeField implements HeaderField {
 
     /**
      * Constructor that takes in an int and uses it
-     * @param Integer typeField
+     * @param typeField
      */
     public LL2PTypeField(Integer typeField){
         this.type = typeField;
@@ -68,7 +68,7 @@ public class LL2PTypeField implements HeaderField {
     /**
      * Primary constructor that uses a String to create the object
      * Parses the input String to be an Int then saves it
-     * @param String typevalueString
+     * @param typevalueString
      */
     public LL2PTypeField(String typevalueString){
         this.type = Integer.valueOf(typevalueString,16);
@@ -79,6 +79,31 @@ public class LL2PTypeField implements HeaderField {
      * Creates the explanation field
      */
     private void setExplanation(){
-        this.explanation = "The type is: " + toHexString() + "\n";
+        String type = "";
+        if(this.type.equals(Constants.LL2P_TYPE_IS_LL3P)){
+            type = "LL3P";
+        }
+        else if(this.type.equals(Constants.LL2P_TYPE_IS_RESERVED)){
+            type = "Reserved";
+        }
+        else if(this.type.equals(Constants.LL2P_TYPE_IS_LRP)){
+            type = "LRP";
+        }
+        else if(this.type.equals(Constants.LL2P_TYPE_IS_ECHO_REQUEST)){
+            type = "Echo Request";
+        }
+        else if(this.type.equals(Constants.LL2P_TYPE_IS_ECHO_REPLY)){
+            type = "Echo Reply";
+        }
+        else if(this.type.equals(Constants.LL2P_TYPE_IS_ARP_REQUEST)){
+            type = "ARP Request";
+        }
+        else if(this.type.equals(Constants.LL2P_TYPE_IS_ARP_REPLY)){
+            type = "ARP Reply";
+        }
+        else if(this.type.equals(Constants.LL2P_TYPE_IS_TEXT)){
+            type = "Text";
+        }
+        this.explanation = "The type is: " + type + "\n";
     }
 }

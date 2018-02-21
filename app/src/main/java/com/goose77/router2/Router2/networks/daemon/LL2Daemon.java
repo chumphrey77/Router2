@@ -22,8 +22,15 @@ public class LL2Daemon implements Observer {
     private LL1Daemon ll1Daemon;
     private static LL2Daemon ourInstance = new LL2Daemon();
 
+    /**
+     * Control the layer 2 functionality for the router
+     */
     private LL2Daemon(){ }
 
+    /**
+     * Process what to do with a layer 2 packet
+     * @param frame
+     */
     public void processLL2PFrame(LL2PFrame frame){
         if(frame.getDestinationAddress().getAddress().equals(Integer.parseInt(Constants.SRC_ADDR,16))){
             //todo check crc
@@ -34,12 +41,30 @@ public class LL2Daemon implements Observer {
         }
     }
 
+    /**
+     * When notified by the bootloader get instances of ll1daemon and UIManager
+     * @param observable
+     * @param o
+     */
     @Override
     public void update(Observable observable, Object o) {
         uiManager = UIManager.getInstance();
         ll1Daemon = LL1Daemon.getInstance();
     }
 
+
+    /**
+     * Check type field and process the packets accordingly
+     * LL3P frame -> unsupported
+     * Reserved -> unsupported
+     * LRP -> unsupported
+     * Echo Request -> send echo reply
+     * Echo Reply ->  display message
+     * ARP Request -> unsupported
+     * ARP Reply -> unsupported
+     * Text -> Display toast saying message was rx'd
+     * @param frame
+     */
     public void checkTypeField(LL2PFrame frame){
         if(frame.getType().toTransmissionString().equals(Integer.toString(Constants.LL2P_TYPE_IS_LL3P))){
             uiManager.displayMessage("Unsupported Frame Type Rx'd");
@@ -68,6 +93,10 @@ public class LL2Daemon implements Observer {
         }
     }
 
+    /**
+     * Create and send LL2Frame to LL1Daemon to send to requester
+     * @param frame
+     */
     public void answerEchoRequest(LL2PFrame frame){
         HeaderFieldFactory factory = HeaderFieldFactory.getInstance();
         LL2PAddressField destAddr = factory.getItem(Constants.LL2P_DEST_ADDRESS_FIELD_ID, frame.getSourceAddress().toTransmissionString());
@@ -79,6 +108,10 @@ public class LL2Daemon implements Observer {
         ll1Daemon.sendFrame(newFrame);
     }
 
+    /**
+     * Create LL2Frame and send it to the address requested
+     * @param destAddrInt
+     */
     public void sendEchoRequest(Integer destAddrInt){
         HeaderFieldFactory factory = HeaderFieldFactory.getInstance();
         LL2PAddressField destAddr = factory.getItem(Constants.LL2P_DEST_ADDRESS_FIELD_ID, Integer.toString(destAddrInt));

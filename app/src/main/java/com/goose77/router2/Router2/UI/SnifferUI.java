@@ -36,8 +36,14 @@ public class SnifferUI implements Observer {
     private TextView protocolBreakoutTextView;
     private TextView frameBytesTestView;
 
+    /**
+     * Class that handles the UI of router
+     */
     public SnifferUI(){}
 
+    /**
+     * Connect all the UI assets to the java code
+     */
     public void connectWidgets(){
         frameListView = (ListView) parentActivity.findViewById(R.id.packetDisplay);
         frameListAdapter = new SnifferFrameListAdapter(context, frameLogger.getFrameList());
@@ -47,6 +53,9 @@ public class SnifferUI implements Observer {
         frameListView.setOnItemClickListener(showUpdateFrameList);
     }
 
+    /**
+     * When a frame is selected from the Sniffer UI, display the frame information
+     */
     private AdapterView.OnItemClickListener showUpdateFrameList = new AdapterView.OnItemClickListener(){
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -56,6 +65,15 @@ public class SnifferUI implements Observer {
         }
     };
 
+    /**
+     * Formats the text for the frame information
+     * Each row starts with an byte offset
+     * Following the offset will be 8 hex representations of the ASCII characters in the frame
+     * Following the hex characters are the actual characters in the frame
+     *
+     * @param frame
+     * @return
+     */
     private String formatBytes(LL2PFrame frame){
         String hexString = frame.toHexString();
         String formatted ="";
@@ -73,7 +91,7 @@ public class SnifferUI implements Observer {
                 formatted += offset + " ";
                 count+=8;
             }
-                formatted += Utilities.toHexString(hexString.substring(i, i + 1)) + " ";// hexString.substring(i).getBytes("UTF-16") ;
+                formatted += Utilities.toHexString(hexString.substring(i, i + 1)) + " ";
         }
         if(count % 8 == 0){
             formatted += "  "+frame.toTransmissionString().substring(count-8) + "\n";
@@ -83,6 +101,15 @@ public class SnifferUI implements Observer {
         }
         return formatted;
     }
+
+    /**
+     * When the bootloader finishes booting the router
+     * This will save references for required references
+     * Add the FrameLogger as an observer
+     * Connect UI elements to this class
+     * @param observable
+     * @param o
+     */
     @Override
     public void update(Observable observable, Object o) {
         if(observable instanceof Bootloader) {
@@ -174,8 +201,17 @@ public class SnifferUI implements Observer {
                 viewHolder = (ViewHolder) convertView.getTag();
             }
             viewHolder.packetNumber.setText(Integer.toString(position));
-            viewHolder.packetSummaryString.setText(frameList.get(position).toSummaryString());
+            viewHolder.packetSummaryString.setText(formatSummary(frameList.get(position)));
             return convertView;
+        }
+
+        public String formatSummary(LL2PFrame frame){
+            String summary ="";
+            summary = frame.getDestinationAddress().toTransmissionString() +" | " +
+                    frame.getSourceAddress().toTransmissionString() + " | "
+                    + frame.getType().toTransmissionString() + " | " +
+                    frame.getPayload().toTransmissionString().substring(0, 15) +"...";
+            return summary;
         }
     }
 }
