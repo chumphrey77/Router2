@@ -88,7 +88,7 @@ public class LL2Daemon implements Observer {
         else if(frame.getType().toTransmissionString().equals(Integer.toString(Constants.LL2P_TYPE_IS_ARP_REPLY))){
             uiManager.displayMessage("Unsupported Frame Type Rx'd");
         }
-        else if(frame.getType().toTransmissionString() == (Integer.toString(Constants.LL2P_TYPE_IS_TEXT))){
+        else if(frame.getType().toTransmissionString().equals((Integer.toString(Constants.LL2P_TYPE_IS_TEXT)))){
             uiManager.displayMessage("Rx'd Frame of Text Type");
         }
     }

@@ -207,10 +207,10 @@ public class SnifferUI implements Observer {
 
         public String formatSummary(LL2PFrame frame){
             String summary ="";
-            summary = frame.getDestinationAddress().toTransmissionString() +" | " +
-                    frame.getSourceAddress().toTransmissionString() + " | "
-                    + frame.getType().toTransmissionString() + " | " +
-                    frame.getPayload().toTransmissionString().substring(0, 15) +"...";
+            summary = frame.getDestinationAddress().toTransmissionString();
+            summary+=" | " + frame.getSourceAddress().toTransmissionString() ;
+            summary+= " | " + frame.getType().toTransmissionString() ;
+            summary+= " | " + frame.getPayload().toTransmissionString() +"...";
             return summary;
         }
     }
