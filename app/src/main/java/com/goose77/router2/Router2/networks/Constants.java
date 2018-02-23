@@ -28,6 +28,8 @@ public class Constants {
     public static final int LL2P_TYPE_FIELD_ID = 2777;
     public static final int CRC_ID = 7776;
     public static final int DATAGRAM_PAYLOAD_FIELD_ID = 7779;
+    public static final int LL3P_SOURCE_ADDRESS_FIELD_ID = 3777;
+    public static final int LL3P_DESTINATION_ADDRESS_FIELD_ID = 3778;
 
     //Record ID so that TableRecord factory know what kind of recrod to make
     public static final int ADJACENCY_RECORD_ID = 5776;

@@ -6,6 +6,7 @@ import com.goose77.router2.Router2.networks.datagram_fields.CRC;
 import com.goose77.router2.Router2.networks.datagram_fields.DatagramPayloadField;
 import com.goose77.router2.Router2.networks.datagram_fields.LL2PAddressField;
 import com.goose77.router2.Router2.networks.datagram_fields.LL2PTypeField;
+import com.goose77.router2.Router2.networks.datagram_fields.LL3PAddressField;
 
 /**
  * Factory for the create of various header field for packets
@@ -38,6 +39,12 @@ public class HeaderFieldFactory implements Factory<HeaderField,String> {
         }
         else if(type == Constants.DATAGRAM_PAYLOAD_FIELD_ID){
             return (U)new DatagramPayloadField(data);
+        }
+        else if(type == Constants.LL3P_SOURCE_ADDRESS_FIELD_ID){
+            return (U)new LL3PAddressField (data, true);
+        }
+        else if(type == Constants.LL3P_DESTINATION_ADDRESS_FIELD_ID){
+            return (U)new LL3PAddressField (data, false);
         }
         return null;
     }
