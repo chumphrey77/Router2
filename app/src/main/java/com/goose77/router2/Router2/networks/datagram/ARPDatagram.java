@@ -8,12 +8,19 @@ import com.goose77.router2.Router2.support.HeaderFieldFactory;
  * Created by Colten on 2/22/2018.
  */
 
+/**
+ * Wraps the LL3PAddress in a Datagram
+ */
 public class ARPDatagram implements Datagram {
     LL3PAddressField ll3pAddress;
 
+    /**
+     * Constructor that gets an ll3pAddress string and converts it to an ll3pAddress
+     * @param ll3P
+     */
     public ARPDatagram(String ll3P){
         HeaderFieldFactory fieldFactory = HeaderFieldFactory.getInstance();
-        ll3pAddress = fieldFactory.getItem(Constants.LL3P_ADDRESS_FIELD_ID, ll3P);
+        ll3pAddress = fieldFactory.getItem(Constants.LL3P_DESTINATION_ADDRESS_FIELD_ID, ll3P);
     }
 
     /**

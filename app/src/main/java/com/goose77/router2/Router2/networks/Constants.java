@@ -60,6 +60,7 @@ public class Constants {
 
     //Source Address for my router
     public static final String SRC_ADDR = "C4111E";
+    public static final String LL3P_SRC_ADDR = "C001";
 
     //IDs for different types of packets
     public static final int LL2P_TYPE_IS_LL3P = 8001;
@@ -79,6 +80,8 @@ public class Constants {
     public static final int UDP_PORT = 49999;
 
 
+    //Time out Constants
+    public static final int MAX_TIME = 5;
     static {
         IP_ADDRESS = getLocalIpAddress();
         Log.i(Constants.logTag, "IP Address is "+IP_ADDRESS); // this will show up in the log file

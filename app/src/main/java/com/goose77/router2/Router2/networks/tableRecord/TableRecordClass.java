@@ -37,7 +37,8 @@ public class TableRecordClass implements TableRecord {
      */
     @Override
     public int getAgeInSeconds() {
-        return getTimeInSeconds() - lastTimeTouched;
+        int ageInSeconds = getTimeInSeconds() - lastTimeTouched;
+        return ageInSeconds;
     }
 
     /**
@@ -52,6 +53,7 @@ public class TableRecordClass implements TableRecord {
      * @return int
      */
     private int getTimeInSeconds(){
-       return  this.lastTimeTouched =Integer.parseInt(Long.toString(Calendar.getInstance().getTimeInMillis()/1000));
+        int ageInSeconds = Integer.parseInt(Long.toString(Calendar.getInstance().getTimeInMillis()/1000));
+       return  ageInSeconds;
     }
 }

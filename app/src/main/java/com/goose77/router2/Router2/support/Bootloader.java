@@ -7,6 +7,7 @@ import com.goose77.router2.Router2.UI.UIManager;
 
 import com.goose77.router2.Router2.networks.Constants;
 import com.goose77.router2.Router2.networks.Table.Table;
+import com.goose77.router2.Router2.networks.daemon.ARPDaemon;
 import com.goose77.router2.Router2.networks.daemon.LL1Daemon;
 import com.goose77.router2.Router2.networks.daemon.LL2Daemon;
 import com.goose77.router2.Router2.networks.datagram.LL2PFrame;
@@ -52,6 +53,7 @@ public class Bootloader extends Observable {
         addObserver(UIManager.getInstance());
         addObserver(LL1Daemon.getInstance());
         addObserver(UIManager.getInstance().getSnifferUI());
+        addObserver(ARPDaemon.getInstance());
         FrameLogger.getInstance().addObserver(UIManager.getInstance().getSnifferUI());
         addObserver(FrameLogger.getInstance());
         addObserver(UIManager.getInstance().getTableUI());
@@ -129,6 +131,11 @@ public class Bootloader extends Observable {
         LL2PFrame frame = new LL2PFrame(destAddr, srcAddr, type, payload, crc);
         daemon.addAdjacencyTable("192.168.86.27", "112233");
         daemon.sendFrame(frame);*/
+
+      //Lab 7 Test
+        Integer ll2pAddr = Integer.parseInt(Constants.SRC_ADDR, 16);
+        Integer ll3pAddr = Integer.parseInt(Constants.LL3P_SRC_ADDR, 16);
+        ARPDaemon.getInstance().testARP(ll2pAddr, ll3pAddr);
 
     }
 }
