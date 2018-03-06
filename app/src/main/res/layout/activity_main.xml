@@ -119,6 +119,7 @@
                 android:textSize="17sp" />
 
             <ListView
+                android:id="@+id/arpTableListView"
                 android:layout_width="match_parent"
                 android:layout_height="142dp"
                 android:layout_margin="2dp"

@@ -1,5 +1,6 @@
 package com.goose77.router2.Router2.networks.datagram_fields;
 
+import com.goose77.router2.Router2.networks.Constants;
 import com.goose77.router2.Router2.networks.datagram.HeaderField;
 import com.goose77.router2.Router2.support.Utilities;
 
@@ -20,7 +21,6 @@ public class LL3PAddressField implements HeaderField{
     private Integer hostNumber;
     private Boolean isSourceAddress;
     private String explanationStirng="";
-
 
     /**
      * Constructor that splits the concatinated address into the separate network and host numbers
@@ -50,7 +50,7 @@ public class LL3PAddressField implements HeaderField{
      */
     @Override
     public String toHexString() {
-        return Utilities.toHexString(address.toString());
+        return Integer.toHexString(address);
     }
 
     /**
@@ -65,7 +65,7 @@ public class LL3PAddressField implements HeaderField{
 
     private void calculateAddrs(String addr){
         networkNumber = Integer.parseInt(addr.substring(0, 2), 16);
-        hostNumber = Integer.parseInt(addr.substring(3), 16);
+        hostNumber = Integer.parseInt(addr.substring(2), 16);
     }
 
     /**
@@ -80,5 +80,13 @@ public class LL3PAddressField implements HeaderField{
         else{
             explanationStirng+=" | Is NOT source Address";
         }
+    }
+
+    public Integer getKey(){
+        return address;
+    }
+
+    public Boolean getIsSourceAddress(){
+        return isSourceAddress;
     }
 }

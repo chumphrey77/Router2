@@ -15,6 +15,14 @@ import java.util.Enumeration;
  * Class that holds constants for the rest of the application to use
  */
 public class Constants {
+    // Scheduler update intervals and estimated Router boot timer
+    public static final Integer ARP_DAEMON_UPDATE_INTERVAL = 5;
+    public static final Integer UI_UPDATE_INTERVAL =1;
+    public static final Integer ROUTER_BOOT_TIME = 7;
+
+    //Number of threads <- used in Scheduler
+    public static final Integer THREAD_COUNT = 5;
+
     // the IP address of this system will be stored here in dotted decimal notation
     public static final String IP_ADDRESS;
 
@@ -60,7 +68,7 @@ public class Constants {
 
     //Source Address for my router
     public static final String SRC_ADDR = "C4111E";
-    public static final String LL3P_SRC_ADDR = "C001";
+    public static final String LL3P_SRC_ADDR = "0801";
 
     //IDs for different types of packets
     public static final int LL2P_TYPE_IS_LL3P = 8001;

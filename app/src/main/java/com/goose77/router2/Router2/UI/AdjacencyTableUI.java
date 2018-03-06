@@ -62,7 +62,7 @@ public class AdjacencyTableUI extends SingleTableUI{
             LL2PAddressField destAddr =  factory.getItem(Constants.LL2P_DEST_ADDRESS_FIELD_ID, ((AdjacencyRecord)tableList.get(i)).getLl2pAddress());
             LL2PAddressField srcAddr = factory.getItem(Constants.LL2P_DEST_ADDRESS_FIELD_ID, Constants.SRC_ADDR);
             LL2PTypeField type = factory.getItem(Constants.LL2P_TYPE_FIELD_ID, Integer.toString(Constants.LL2P_TYPE_IS_ECHO_REQUEST));
-            DatagramPayloadField payload = factory.getItem(Constants.DATAGRAM_PAYLOAD_FIELD_ID, "Echo Request");
+            DatagramPayloadField payload = factory.getItem(Constants.LL2P_TYPE_IS_ECHO_REQUEST, "Echo Request");
             CRC crc = factory.getItem(Constants.CRC_ID, "0000");  //todo generate crc
             LL2PFrame frame = new LL2PFrame(destAddr, srcAddr, type, payload, crc);
             LL1Daemon.getInstance().sendFrame(frame);

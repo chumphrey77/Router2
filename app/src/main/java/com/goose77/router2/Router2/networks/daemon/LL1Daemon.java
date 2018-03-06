@@ -100,6 +100,7 @@ public class LL1Daemon extends Observable implements Observer {
     public void addAdjacencyTable(String ipAddress, String ll2pAddress){
         AdjacencyRecord record = tableRecordFactory.getItem(Constants.ADJACENCY_RECORD_ID, ipAddress+ll2pAddress);
         adjacencyTable.addItem(record);
+        ll2Daemon.sendARPRequest(Integer.parseInt(ll2pAddress, 16));
     }
 
     public void addAdjacencyTable(AdjacencyRecord record){

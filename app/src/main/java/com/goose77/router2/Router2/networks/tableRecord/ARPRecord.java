@@ -44,7 +44,7 @@ public class ARPRecord extends TableRecordClass {
     public ARPRecord(Integer ll2p, Integer ll3p){
         super();
         ll2pAddress = new LL2PAddressField(ll2p, false);
-        ll3pAddress = new LL3PAddressField(ll3p.toString(), false);
+        ll3pAddress = new LL3PAddressField(Integer.toHexString(ll3p), false);
     }
 
     /**
@@ -62,7 +62,7 @@ public class ARPRecord extends TableRecordClass {
      * @return intKey
      */
     public Integer getKey(){
-        return ll2pAddress.getAddress();
+        return ll3pAddress.getKey();
     }
 
     /**
@@ -73,6 +73,7 @@ public class ARPRecord extends TableRecordClass {
         String toString;
         toString = "LL2P: " + ll2pAddress.toHexString();
         toString += " LL3P: " + ll3pAddress.toHexString();
+        toString += " Age: " + getAgeInSeconds() + " Seconds";
         return toString;
     }
     public LL2PAddressField getLl2pAddress() {

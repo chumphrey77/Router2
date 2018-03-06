@@ -2,10 +2,12 @@ package com.goose77.router2.Router2.networks.daemon;
 
 import com.goose77.router2.Router2.networks.Constants;
 import com.goose77.router2.Router2.networks.Table.TimedTable;
+import com.goose77.router2.Router2.networks.datagram.ARPDatagram;
 import com.goose77.router2.Router2.networks.tableRecord.ARPRecord;
 import com.goose77.router2.Router2.networks.tableRecord.TableRecord;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -34,7 +36,7 @@ public class ARPDaemon implements Runnable, Observer{
      */
     @Override
     public void run() {
-        //todo Blank for now
+        ArrayList<TableRecord> expired = arpTable.expireRecords(Constants.MAX_TIME);
     }
 
     /**
@@ -65,7 +67,7 @@ public class ARPDaemon implements Runnable, Observer{
     public void addARPEntry(Integer ll2pAddress, Integer ll3pAddress){
         ARPRecord arpRecord = new ARPRecord(ll2pAddress, ll3pAddress);
         if(arpTable.containsRecord(arpRecord)){
-            arpTable.touch(ll2pAddress);
+            arpTable.touch(ll3pAddress);
         }
         else{
             arpTable.addItem(arpRecord);
@@ -94,5 +96,88 @@ public class ARPDaemon implements Runnable, Observer{
             e.printStackTrace();
         }
         ArrayList<TableRecord> expired2 = arpTable.expireRecords(Constants.MAX_TIME);
+    }
+
+    /**
+     * Touches an ARP Entry to resets its age timer
+     * @param ll3pAddress
+     */
+    public void updateARPEntry(Integer ll3pAddress){
+        try {
+            if (arpTable.getItem(ll3pAddress) instanceof ARPRecord) {
+                arpTable.touch(ll3pAddress);
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public TimedTable getArpTable(){
+        return arpTable;
+    }
+
+    /**
+     * Returns each of the individual LL3P addresses represented in the ARP Table
+     * in a list format
+     * @return
+     */
+    public List<Integer> getAttachedNodes(){
+        List<Integer> ll3PAddresses = new ArrayList<>();
+        for(TableRecord record : arpTable.getTableAsList()){
+            if(record instanceof ARPRecord){
+                ll3PAddresses.add(record.getKey());
+            }
+        }
+        return ll3PAddresses;
+    }
+
+    /**
+     * Adds an ARPEntry (or touches an existing ARPEntry when a Reply is Rx'd
+     * @param ll2pAddress
+     * @param arpDatagram
+     */
+    public void processARPReply(String ll2pAddress, ARPDatagram arpDatagram){
+        Integer ll2p = Integer.parseInt(ll2pAddress, 16);
+        Integer ll3p = Integer.parseInt(arpDatagram.toTransmissionString(), 16);
+        addARPEntry(ll2p, ll3p);
+    }
+
+    /**
+     * Adds an ARPEntry (or touches an existing ARPEntry when a Request is Rx'd
+     * Also sends an ARPReply
+     * @param ll2pAddress
+     * @param arpDatagram
+     */
+    public void processARPRequest(String ll2pAddress, ARPDatagram arpDatagram){
+        Integer ll2p = Integer.parseInt(ll2pAddress, 16);
+        Integer ll3p = Integer.parseInt(arpDatagram.toTransmissionString(), 16);
+        addARPEntry(ll2p, ll3p);
+        ll2Daemon.sendARPReply(ll2p);
+    }
+
+    /**
+     * Get the LL2PAddress that corresponds to an LL3Address in the ARP Table
+     * @param ll3pAddress
+     * @return
+     */
+    public Integer getMACAddress(Integer ll3pAddress){
+        Integer macAddr = null;
+        try {
+            ARPRecord record = (ARPRecord) arpTable.getItem(ll3pAddress);
+            macAddr = record.getLl2pAddress().getAddress();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return macAddr;
+    }
+
+    public ArrayList<TableRecord> getARPTable(){
+        return arpTable.getTableAsArrayList();
+    }
+
+    public void snedARPRequest(Integer ll2pAddress){
+       ll2Daemon.sendARPRequest(ll2pAddress);
     }
 }

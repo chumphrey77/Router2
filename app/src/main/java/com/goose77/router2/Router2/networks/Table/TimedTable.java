@@ -39,6 +39,10 @@ public class TimedTable extends Table {
         for(TableRecord expiredRecord: expiredRecords){
             table.remove(expiredRecord);
         }
+        if(expiredRecords.size() > 0){
+            setChanged();
+            notifyObservers();
+        }
         return expiredRecords;
     }
 

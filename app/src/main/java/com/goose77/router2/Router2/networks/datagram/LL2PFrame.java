@@ -112,7 +112,7 @@ public class LL2PFrame implements Datagram {
         this.destinationAddress = factory.getItem(Constants.LL2P_DEST_ADDRESS_FIELD_ID, destAddrString);
         this.sourceAddress = factory.getItem(Constants.LL2P_SOURCE_ADDRESS_FIELD_ID, srcAddrString);
         this.type =factory.getItem(Constants.LL2P_TYPE_FIELD_ID, typeString);
-        this.payload = factory.getItem(Constants.DATAGRAM_PAYLOAD_FIELD_ID, payloadString);
+        this.payload = factory.getItem(Integer.parseInt(typeString), payloadString);
         this.crc = factory.getItem(Constants.CRC_ID, crcString);
     }
 

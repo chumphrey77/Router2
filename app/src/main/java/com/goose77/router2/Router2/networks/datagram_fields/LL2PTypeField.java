@@ -32,7 +32,7 @@ public class LL2PTypeField implements HeaderField {
      */
     @Override
     public String toTransmissionString() {
-        return toHexString();
+        return Integer.toString(type);
     }
 
 
@@ -71,7 +71,7 @@ public class LL2PTypeField implements HeaderField {
      * @param typevalueString
      */
     public LL2PTypeField(String typevalueString){
-        this.type = Integer.valueOf(typevalueString,16);
+        this.type = Integer.valueOf(typevalueString);
         this.setExplanation();
     }
 

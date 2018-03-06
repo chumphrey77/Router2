@@ -37,8 +37,29 @@ public class HeaderFieldFactory implements Factory<HeaderField,String> {
         else if(type == Constants.CRC_ID){
             return (U)new CRC(data);
         }
-        else if(type == Constants.DATAGRAM_PAYLOAD_FIELD_ID){
-            return (U)new DatagramPayloadField(data);
+        else if(type == Constants.LL2P_TYPE_IS_ARP_REPLY){
+            return (U)new DatagramPayloadField(type, data);
+        }
+        else if(type == Constants.LL2P_TYPE_IS_ARP_REQUEST){
+            return (U)new DatagramPayloadField(type, data);
+        }
+        else if(type == Constants.LL2P_TYPE_IS_ECHO_REQUEST){
+            return (U)new DatagramPayloadField(type, data);
+        }
+        else if(type == Constants.LL2P_TYPE_IS_ECHO_REPLY){
+            return (U)new DatagramPayloadField(type, data);
+        }
+        else if(type == Constants.LL2P_TYPE_IS_TEXT){
+            return (U)new DatagramPayloadField(type, data);
+        }
+        else if(type == Constants.LL2P_TYPE_IS_LL3P){
+            return (U)new DatagramPayloadField(type, data);
+        }
+        else if(type == Constants.LL2P_TYPE_IS_RESERVED){
+            return (U)new DatagramPayloadField(type, data);
+        }
+        else if(type == Constants.LL2P_TYPE_IS_LRP){
+            return (U)new DatagramPayloadField(type, data);
         }
         else if(type == Constants.LL3P_SOURCE_ADDRESS_FIELD_ID){
             return (U)new LL3PAddressField (data, true);

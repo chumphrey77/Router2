@@ -5,7 +5,9 @@ import android.util.Log;
 
 import com.goose77.router2.R;
 import com.goose77.router2.Router2.networks.Constants;
+import com.goose77.router2.Router2.networks.daemon.ARPDaemon;
 import com.goose77.router2.Router2.networks.daemon.LL1Daemon;
+import com.goose77.router2.Router2.networks.daemon.LL2Daemon;
 import com.goose77.router2.Router2.support.ParentActivity;
 
 import java.util.Observable;
@@ -21,7 +23,7 @@ import java.util.Observer;
  */
 public class TableUI implements Runnable, Observer{
     private AdjacencyTableUI adjacencyUI;
-    private SingleTableUI appTableUI;
+    private SingleTableUI arpTableUI;
     private SingleTableUI routingTableUI;
     private SingleTableUI forwardingUI;
 
@@ -29,7 +31,7 @@ public class TableUI implements Runnable, Observer{
      * Empty constructor
      */
     public TableUI( ){
-        Log.i(Constants.logTag, "Stuff");
+        //Log.i(Constants.logTag, "Stuff");
     }
 
     /**
@@ -37,7 +39,7 @@ public class TableUI implements Runnable, Observer{
      */
     @Override
     public void run() {
-        //todo fill in method
+        arpTableUI.updateView();
     }
 
     /**
@@ -51,6 +53,7 @@ public class TableUI implements Runnable, Observer{
     public void update(Observable observable, Object o) {
         Activity activity = ParentActivity.getParentActivity();
         adjacencyUI = new AdjacencyTableUI(activity, R.id.AdjacencyTable, LL1Daemon.getInstance().getAdjacencyTable(), LL1Daemon.getInstance());
+        arpTableUI = new SingleTableUI(activity, R.id.arpTableListView, ARPDaemon.getInstance().getArpTable());
         //todo instantiate the other SingleTableUI objcets
     }
 }

@@ -40,7 +40,7 @@ public class ARPDatagram implements Datagram {
      */
     @Override
     public String toProtocolExplanationString() {
-        return "ARP Datagram: \n" + ll3pAddress.explainSelf();
+        return "LL3P Address:" + ll3pAddress.toHexString() +" \n" ;
     }
 
     /**

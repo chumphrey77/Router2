@@ -1,8 +1,11 @@
 package com.goose77.router2.Router2.networks.datagram_fields;
 
+import com.goose77.router2.Router2.networks.Constants;
+import com.goose77.router2.Router2.networks.datagram.ARPDatagram;
 import com.goose77.router2.Router2.networks.datagram.TextDatagram;
 import com.goose77.router2.Router2.networks.datagram.HeaderField;
 import com.goose77.router2.Router2.networks.datagram.Datagram;
+import com.goose77.router2.Router2.support.DatagramFactory;
 import com.goose77.router2.Router2.support.Utilities;
 /**
  * Created by goose on 1/25/2018.
@@ -73,7 +76,8 @@ public class DatagramPayloadField implements HeaderField {
      * that is what will actually be seen as the payload
      * @param  text
      */
-    public DatagramPayloadField(String text){
-        this.datagram = new TextDatagram(text);
+    public DatagramPayloadField(Integer type, String text){
+        DatagramFactory factory = DatagramFactory.getOurInstance();
+        datagram = factory.getItem(type, text);
     }
 }

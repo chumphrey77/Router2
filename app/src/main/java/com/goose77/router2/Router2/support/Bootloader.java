@@ -10,6 +10,8 @@ import com.goose77.router2.Router2.networks.Table.Table;
 import com.goose77.router2.Router2.networks.daemon.ARPDaemon;
 import com.goose77.router2.Router2.networks.daemon.LL1Daemon;
 import com.goose77.router2.Router2.networks.daemon.LL2Daemon;
+import com.goose77.router2.Router2.networks.daemon.Scheduler;
+import com.goose77.router2.Router2.networks.datagram.ARPDatagram;
 import com.goose77.router2.Router2.networks.datagram.LL2PFrame;
 import com.goose77.router2.Router2.networks.datagram_fields.CRC;
 import com.goose77.router2.Router2.networks.datagram_fields.DatagramPayloadField;
@@ -57,6 +59,7 @@ public class Bootloader extends Observable {
         FrameLogger.getInstance().addObserver(UIManager.getInstance().getSnifferUI());
         addObserver(FrameLogger.getInstance());
         addObserver(UIManager.getInstance().getTableUI());
+        addObserver(Scheduler.getInstance());
         addObserver(LL2Daemon.getInstance());
         setChanged();
         notifyObservers();
@@ -133,9 +136,14 @@ public class Bootloader extends Observable {
         daemon.sendFrame(frame);*/
 
       //Lab 7 Test
-        Integer ll2pAddr = Integer.parseInt(Constants.SRC_ADDR, 16);
+      /*  Integer ll2pAddr = Integer.parseInt(Constants.SRC_ADDR, 16);
         Integer ll3pAddr = Integer.parseInt(Constants.LL3P_SRC_ADDR, 16);
-        ARPDaemon.getInstance().testARP(ll2pAddr, ll3pAddr);
+        ARPDaemon.getInstance().testARP(ll2pAddr, ll3pAddr);*/
+
+      //lab 8 test
+       // LL2Daemon ll2Daemon = LL2Daemon.getInstance();
+        //LL1Daemon.getInstance().addAdjacencyTable("10.30.35.84", "112233");
+        //ll2Daemon.sendARPRequest(Integer.parseInt("112233", 16));
 
     }
 }

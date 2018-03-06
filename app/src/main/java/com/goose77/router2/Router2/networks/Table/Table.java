@@ -105,7 +105,7 @@ public class Table extends Observable implements TableInterface {
         notifyObservers();
     }
 
-    public List<TableRecord> getTableAsArrayList() {
+    public ArrayList<TableRecord> getTableAsArrayList() {
         return (ArrayList<TableRecord>)table;
     }
 }
