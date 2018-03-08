@@ -15,6 +15,22 @@ import java.util.Enumeration;
  * Class that holds constants for the rest of the application to use
  */
 public class Constants {
+
+    // LRP Packet Disassembly offsets
+    public static final Integer LRP_PACKET_LL3P_ADDR_OFFSET = 0;
+    public static final Integer LRP_PACKET_LL3P_ADDR_END_OFFSET = 4;
+    public static final Integer LRP_PACKET_SEQ_NUM_OFFSET = 4;
+    public static final Integer LRP_PACKET_SEQ_NUM_END_OFFSET = 5;
+    public static final Integer LRP_PACKET_COUNT_OFFSET = 5;
+    public static final Integer LRP_PACKET_COUNT_END_OFFSET = 6;
+    public static final Integer LRP_PACKET_FIRST_NETWORK_DISTANCE_PAIR_OFFSET = 6;
+    public static final Integer LRP_PACKET_NETWORK_DISTANCE_PAIR_END_OFFSET =2;
+
+    //Network Distance Pair offsets and byte pad sizes
+    public static final Integer NETWORK_CHAR_OFFSET = 0;
+    public static final Integer DISTANCE_CHAR_OFFSET = 2;
+    public static final Integer NETWORK_DISTANCE_PAIR_BYTE_PAD = 1;
+
     // Scheduler update intervals and estimated Router boot timer
     public static final Integer ARP_DAEMON_UPDATE_INTERVAL = 5;
     public static final Integer UI_UPDATE_INTERVAL =1;
@@ -31,6 +47,9 @@ public class Constants {
     public static final String logTag = "GOOSE: ";
 
     // Header field ID so, HeaderFieldFactory knows what field to make
+    public static final int NETWORK_DISTANCE_PAIR_FIELD_ID = 3775;
+    public static final int LRP_ROUTE_COUNT_FIELD_ID = 3776;
+    public static final int LRP_SEQUENCE_NUMBER_FIELD_ID = 3779;
     public static final int LL2P_SOURCE_ADDRESS_FIELD_ID = 2778;
     public static final int LL2P_DEST_ADDRESS_FIELD_ID = 2776;
     public static final int LL2P_TYPE_FIELD_ID = 2777;

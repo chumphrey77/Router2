@@ -7,6 +7,9 @@ import com.goose77.router2.Router2.networks.datagram_fields.DatagramPayloadField
 import com.goose77.router2.Router2.networks.datagram_fields.LL2PAddressField;
 import com.goose77.router2.Router2.networks.datagram_fields.LL2PTypeField;
 import com.goose77.router2.Router2.networks.datagram_fields.LL3PAddressField;
+import com.goose77.router2.Router2.networks.datagram_fields.LRPRouteCount;
+import com.goose77.router2.Router2.networks.datagram_fields.LRPSequenceNumber;
+import com.goose77.router2.Router2.networks.datagram_fields.NetworkDistancePair;
 
 /**
  * Factory for the create of various header field for packets
@@ -66,6 +69,15 @@ public class HeaderFieldFactory implements Factory<HeaderField,String> {
         }
         else if(type == Constants.LL3P_DESTINATION_ADDRESS_FIELD_ID){
             return (U)new LL3PAddressField (data, false);
+        }
+        else if(type == Constants.LRP_SEQUENCE_NUMBER_FIELD_ID){
+            return (U)new LRPSequenceNumber(data);
+        }
+        else if(type == Constants.LRP_ROUTE_COUNT_FIELD_ID){
+            return (U)new LRPRouteCount(data);
+        }
+        else if(type == Constants.NETWORK_DISTANCE_PAIR_FIELD_ID){
+            return (U)new NetworkDistancePair(data);
         }
         return null;
     }
