@@ -19,20 +19,21 @@ public class RoutingTable extends TimedTable {
 
     public void addNewRoute(TableRecord newEntry){
         RoutingRecord entry = (RoutingRecord) newEntry;
-        for(TableRecord record : table){
-            RoutingRecord routingRecord = (RoutingRecord)record;
-            if(routingRecord.getKey().equals(entry.getKey())){
-                if(routingRecord.getDistance().equals(entry.getDistance())){
-                    touch(routingRecord.getKey());
-                }
-                else{
-                    removeItem(routingRecord.getKey());
-                    addItem(record);
+        if(containsRoute(entry.getKey())) {
+            for (TableRecord record : table) {
+                RoutingRecord routingRecord = (RoutingRecord) record;
+                if (routingRecord.getKey().equals(entry.getKey())) {
+                    if (routingRecord.getDistance().equals(entry.getDistance())) {
+                        touch(routingRecord.getKey());
+                    } else {
+                        removeItem(routingRecord.getKey());
+                        addItem(entry);
+                    }
                 }
             }
-            else{
-                addItem(record);
-            }
+        }
+        else{
+            addItem((entry));
         }
     }
 
@@ -79,18 +80,36 @@ public class RoutingTable extends TimedTable {
     }
 
     public List<RoutingRecord> getBestRoutes(){
+        Integer routingNumber = 0;
+        Integer lowestDistance = 0;
         List<RoutingRecord> bestRoutes = new ArrayList<RoutingRecord>();
+        Boolean alreadyContains;
         for(TableRecord record : table){
+            lowestDistance = 0;
             RoutingRecord routingRecord = (RoutingRecord) record;
-            for(RoutingRecord bestRouteSoFar : bestRoutes){
-                if(routingRecord.getNetworkNumber().equals(bestRouteSoFar.getNetworkNumber())){
-                    if(routingRecord.getDistance() < bestRouteSoFar.getDistance()){
-                        bestRoutes.remove(bestRouteSoFar);
-                        bestRoutes.add(routingRecord);
+            routingNumber = routingRecord.getNetworkNumber();
+            alreadyContains = false;
+            for(RoutingRecord bestRoute : bestRoutes){
+                if(bestRoute.getNetworkNumber().equals(routingNumber)){
+                    alreadyContains = true;
+                }
+            }
+            if(!alreadyContains){
+                for(TableRecord compareRecord : table){
+                    RoutingRecord compareRoutingRecord = (RoutingRecord) compareRecord;
+                    if(compareRoutingRecord.getNetworkNumber().equals(routingRecord.getNetworkNumber())){
+                        if(compareRoutingRecord.getDistance() < lowestDistance){
+                            lowestDistance = compareRoutingRecord.getDistance();
+                        }
                     }
                 }
-                else{
-                    bestRoutes.add(routingRecord);
+                for(TableRecord compareRecord : table){
+                    RoutingRecord compareRoutingRecord = (RoutingRecord) compareRecord;
+                    if(compareRoutingRecord.getNetworkNumber().equals(routingRecord.getNetworkNumber())){
+                        if(compareRoutingRecord.getDistance().equals(lowestDistance)){
+                            bestRoutes.add(compareRoutingRecord);
+                        }
+                    }
                 }
             }
         }
@@ -117,5 +136,15 @@ public class RoutingTable extends TimedTable {
         for(RoutingRecord routingRecord : routes){
             addNewRoute(routingRecord);
         }
+    }
+
+    private boolean containsRoute(Integer key){
+        for(TableRecord record : table){
+            RoutingRecord routingRecord = (RoutingRecord) record;
+            if(routingRecord.getKey().equals(key)){
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -6,6 +6,7 @@ import android.util.Log;
 import com.goose77.router2.Router2.UI.UIManager;
 
 import com.goose77.router2.Router2.networks.Constants;
+import com.goose77.router2.Router2.networks.Table.RoutingTable;
 import com.goose77.router2.Router2.networks.Table.Table;
 import com.goose77.router2.Router2.networks.daemon.ARPDaemon;
 import com.goose77.router2.Router2.networks.daemon.LL1Daemon;
@@ -18,12 +19,16 @@ import com.goose77.router2.Router2.networks.datagram_fields.DatagramPayloadField
 import com.goose77.router2.Router2.networks.datagram_fields.LL2PAddressField;
 import com.goose77.router2.Router2.networks.datagram_fields.LL2PTypeField;
 import com.goose77.router2.Router2.networks.tableRecord.AdjacencyRecord;
+import com.goose77.router2.Router2.networks.tableRecord.RoutingRecord;
 
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 
 /**
@@ -144,6 +149,72 @@ public class Bootloader extends Observable {
        // LL2Daemon ll2Daemon = LL2Daemon.getInstance();
         //LL1Daemon.getInstance().addAdjacencyTable("10.30.35.84", "112233");
         //ll2Daemon.sendARPRequest(Integer.parseInt("112233", 16));
+
+      //lab 9 test
+        RoutingTable routingTable = new RoutingTable();
+        RoutingTable forwardingTable = new RoutingTable();
+        RoutingRecord routingRecord = new RoutingRecord(1,2,8);
+        routingTable.addNewRoute(routingRecord);
+        routingTable.addNewRoute(routingRecord);
+        routingTable.expireRecords(Constants.MAX_TIME);
+        RoutingRecord routingRecord2 = new RoutingRecord(2,3,8);
+        routingTable.addNewRoute(routingRecord2);
+        RoutingRecord routingRecord3 = new RoutingRecord(2,4,8);
+        routingTable.addNewRoute(routingRecord3);
+        RoutingRecord routingRecord4 = new RoutingRecord(4,4,8);
+        RoutingRecord routingRecord5 = new RoutingRecord(4,2,7);
+        RoutingRecord routingRecord6 = new RoutingRecord(4,3,5);
+        RoutingRecord routingRecord7 = new RoutingRecord(5,1,5);
+        RoutingRecord routingRecord8 = new RoutingRecord(5,3,7);
+        RoutingRecord routingRecord9 = new RoutingRecord(5,4,6);
+        RoutingRecord routingRecord10 = new RoutingRecord(6,2,7);
+        RoutingRecord routingRecord11 = new RoutingRecord(6,4,5);
+        RoutingRecord routingRecord12 = new RoutingRecord(6,1,6);
+        routingTable.addNewRoute(routingRecord4);
+        routingTable.addNewRoute(routingRecord5);
+        routingTable.addNewRoute(routingRecord6);
+        routingTable.addNewRoute(routingRecord7);
+        routingTable.addNewRoute(routingRecord8);
+        routingTable.addNewRoute(routingRecord9);
+        routingTable.addNewRoute(routingRecord10);
+        routingTable.addNewRoute(routingRecord11);
+        routingTable.addNewRoute(routingRecord12);
+        List<RoutingRecord>bestRoutes = routingTable.getBestRoutes();
+
+        RoutingRecord routingRecord13 = new RoutingRecord(10,4,8);
+        RoutingRecord routingRecord14 = new RoutingRecord(10,2,7);
+        RoutingRecord routingRecord15 = new RoutingRecord(10,3,5);
+        RoutingRecord routingRecord16 = new RoutingRecord(11,1,5);
+        RoutingRecord routingRecord17 = new RoutingRecord(11,3,7);
+        RoutingRecord routingRecord18 = new RoutingRecord(11,4,6);
+        RoutingRecord routingRecord19 = new RoutingRecord(12,2,7);
+        RoutingRecord routingRecord20 = new RoutingRecord(12,4,5);
+        RoutingRecord routingRecord21 = new RoutingRecord(12,1,6);
+        List<RoutingRecord>routes = new ArrayList<RoutingRecord>();
+        routes.add(routingRecord13.getKey(), routingRecord13);
+        routes.add(routingRecord14.getKey(), routingRecord14);
+        routes.add(routingRecord15.getKey(), routingRecord15);
+        routes.add(routingRecord16.getKey(), routingRecord16);
+        routes.add(routingRecord17.getKey(), routingRecord17);
+        routes.add(routingRecord18.getKey(), routingRecord18);
+        routes.add(routingRecord19.getKey(), routingRecord19);
+        routes.add(routingRecord20.getKey(), routingRecord20);
+        routes.add(routingRecord21.getKey(), routingRecord21);
+        routingTable.addRoutes(routes);
+        bestRoutes = routingTable.getBestRoutes();
+        forwardingTable.addRoutes(bestRoutes);
+
+        RoutingRecord routingRecord22 = new RoutingRecord(10,1,10);
+        RoutingRecord routingRecord23 = new RoutingRecord(11,1,11);
+        RoutingRecord routingRecord24 = new RoutingRecord(12,1,12);
+        List<RoutingRecord>newRoutes = new ArrayList<RoutingRecord>();
+        newRoutes.add(routingRecord22.getKey(), routingRecord22);
+        newRoutes.add(routingRecord23.getKey(), routingRecord23);
+        newRoutes.add(routingRecord24.getKey(), routingRecord24);
+        routingTable.addRoutes(newRoutes);
+        bestRoutes = routingTable.getBestRoutes();
+        forwardingTable.addRoutes(bestRoutes);
+
 
     }
 }

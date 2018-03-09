@@ -4,6 +4,7 @@ import com.goose77.router2.Router2.networks.Constants;
 import com.goose77.router2.Router2.networks.datagram.HeaderField;
 import com.goose77.router2.Router2.networks.datagram_fields.NetworkDistancePair;
 import com.goose77.router2.Router2.support.HeaderFieldFactory;
+import com.goose77.router2.Router2.support.Utilities;
 
 /**
  * Created by goose on 3/8/2018.
@@ -19,8 +20,8 @@ public class RoutingRecord extends TableRecordClass {
         this.nextHop = nextHop;
         genterateKey(networkNumber);
         HeaderFieldFactory fieldFactory = HeaderFieldFactory.getInstance();
-        String pairString = (Integer.toHexString(networkNumber)) + Integer.toHexString(distance);
-        fieldFactory.getItem(Constants.NETWORK_DISTANCE_PAIR_FIELD_ID, pairString);
+        String pairString = Utilities.padHexString(Integer.toHexString(networkNumber),1) +Utilities.padHexString(Integer.toHexString(distance),1);
+        networkDistancePair = fieldFactory.getItem(Constants.NETWORK_DISTANCE_PAIR_FIELD_ID, pairString);
     }
 
 
