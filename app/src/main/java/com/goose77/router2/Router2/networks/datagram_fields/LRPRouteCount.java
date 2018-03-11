@@ -6,9 +6,16 @@ import com.goose77.router2.Router2.networks.datagram.HeaderField;
  * Created by goose on 3/8/2018.
  */
 
+/**
+ * Header field that simply tells the receiver the number of routes to expect in an LRP packet
+ */
 public class LRPRouteCount implements HeaderField {
     private Integer routeCount;
 
+    /**
+     * Constructor that simply parses a string into a decimal number of routes for the LRP packet
+     * @param rtCount
+     */
     public LRPRouteCount(String rtCount){
         routeCount = Integer.parseInt(rtCount, 16);
     }

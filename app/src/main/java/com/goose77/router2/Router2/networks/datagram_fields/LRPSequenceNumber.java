@@ -7,9 +7,17 @@ import com.goose77.router2.Router2.support.Utilities;
  * Created by goose on 3/8/2018.
  */
 
+/**
+ * Header field for LRP packets that just states what packet number this is in a sequence of LRP
+ * updates
+ */
 public class LRPSequenceNumber implements HeaderField {
     private Integer sequenceNumber;
 
+    /**
+     * Simply parses a string into a decimal number to tell the sequence number
+     * @param seqNum
+     */
     public LRPSequenceNumber(String seqNum){
         sequenceNumber = Integer.parseInt(seqNum, 16);
     }

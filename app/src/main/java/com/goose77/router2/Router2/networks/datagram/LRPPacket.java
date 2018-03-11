@@ -13,12 +13,24 @@ import java.util.List;
  * Created by goose on 3/8/2018.
  */
 
+/**
+ * Class for creating an LRP packet that will be place inside a LL2PFrame
+ * This type of packet is used to distribute my routers knowledge of routes to my adjacent nodes
+ */
 public class LRPPacket implements Datagram {
     private LL3PAddressField ll3pAddr;
     private LRPSequenceNumber seqNum;
     private LRPRouteCount count;
     private List<NetworkDistancePair> routes;
 
+    /**
+     * Constructor that takes in Integer values and the list of routes to create the packet
+     * This could be used for sending LRP packets
+     * @param ll3p
+     * @param seqNum
+     * @param count
+     * @param routes
+     */
     public LRPPacket(Integer ll3p, Integer seqNum, Integer count, List<NetworkDistancePair> routes){
         HeaderFieldFactory fieldFactory = HeaderFieldFactory.getInstance();
         String ll3pAddrString = Integer.toHexString(ll3p);
@@ -31,7 +43,38 @@ public class LRPPacket implements Datagram {
         this.count = fieldFactory.getItem(Constants.LRP_ROUTE_COUNT_FIELD_ID, countStirng);
     }
 
+    /**
+     * Constructor that takes in a String to create a usable LRP packet
+     * This will parse the string into the necessary fields for creating an LRP packet
+     * @param packetString
+     */
+    public LRPPacket(String packetString){
+        HeaderFieldFactory fieldFactory = HeaderFieldFactory.getInstance();
+        int packetSize = packetString.length();
+        String ll3pAddrString = packetString.substring(Constants.LRP_PACKET_LL3P_ADDR_OFFSET,
+                Constants.LRP_PACKET_LL3P_ADDR_END_OFFSET);
+        String seqNumString = packetString.substring(Constants.LRP_PACKET_SEQ_NUM_OFFSET,
+                Constants.LRP_PACKET_SEQ_NUM_END_OFFSET);
+        String countString = packetString.substring(Constants.LRP_PACKET_COUNT_OFFSET,
+                Constants.LRP_PACKET_COUNT_END_OFFSET);
+        for(int i = Constants.LRP_PACKET_FIRST_NETWORK_DISTANCE_PAIR_OFFSET;
+            i <= packetSize - Constants.LRP_PACKET_NETWORK_DISTANCE_PAIR_END_OFFSET;
+            i += Constants.LRP_PACKET_NETWORK_DISTANCE_PAIR_END_OFFSET){
+            routes.add((NetworkDistancePair) fieldFactory.getItem(Constants.NETWORK_DISTANCE_PAIR_FIELD_ID,
+                    packetString.substring(i, i+Constants.LRP_PACKET_NETWORK_DISTANCE_PAIR_END_OFFSET)));
+        }
+        ll3pAddr = fieldFactory.getItem(Constants.LL3P_SOURCE_ADDRESS_FIELD_ID, ll3pAddrString);
+        seqNum = fieldFactory.getItem(Constants.LRP_SEQUENCE_NUMBER_FIELD_ID, seqNumString);
+        count = fieldFactory.getItem(Constants.LRP_ROUTE_COUNT_FIELD_ID, countString);
+    }
 
+
+    /**
+     * Constructor that takes in a byte array to create a usable LRP packet
+     * This could be used for receive packets as a byte array and needing to construct a useful object
+     * out of it
+     * @param packet
+     */
     public LRPPacket(byte[] packet){
         HeaderFieldFactory fieldFactory = HeaderFieldFactory.getInstance();
         String packetString = new String(packet);

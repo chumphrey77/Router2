@@ -151,16 +151,28 @@ public class Bootloader extends Observable {
         //ll2Daemon.sendARPRequest(Integer.parseInt("112233", 16));
 
       //lab 9 test
+        //Add two of the same Route, See if a duplicate is added to the routing table
         RoutingTable routingTable = new RoutingTable();
         RoutingTable forwardingTable = new RoutingTable();
         RoutingRecord routingRecord = new RoutingRecord(1,2,8);
         routingTable.addNewRoute(routingRecord);
         routingTable.addNewRoute(routingRecord);
+        //Check to make sure record expired from routing table
+        try {
+            Thread.sleep(6000);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
         routingTable.expireRecords(Constants.MAX_TIME);
+
+        //Change the distance on an existing route, make sure routing table is updated
         RoutingRecord routingRecord2 = new RoutingRecord(2,3,8);
         routingTable.addNewRoute(routingRecord2);
         RoutingRecord routingRecord3 = new RoutingRecord(2,4,8);
         routingTable.addNewRoute(routingRecord3);
+
+        //Get the best routes from the routing table, make sure they are actually the best routes
         RoutingRecord routingRecord4 = new RoutingRecord(4,4,8);
         RoutingRecord routingRecord5 = new RoutingRecord(4,2,7);
         RoutingRecord routingRecord6 = new RoutingRecord(4,3,5);
@@ -181,39 +193,46 @@ public class Bootloader extends Observable {
         routingTable.addNewRoute(routingRecord12);
         List<RoutingRecord>bestRoutes = routingTable.getBestRoutes();
 
+        //Add routes to the routing table via a list of records, check to make sure they are added
+        //Get the best routes for all routes currently in the routing table.
+        //Add the best routes to the forwarding table, make sure only the best routes are in the
+        //forwarding table
         RoutingRecord routingRecord13 = new RoutingRecord(10,4,8);
         RoutingRecord routingRecord14 = new RoutingRecord(10,2,7);
         RoutingRecord routingRecord15 = new RoutingRecord(10,3,5);
-        RoutingRecord routingRecord16 = new RoutingRecord(11,1,5);
+        RoutingRecord routingRecord16 = new RoutingRecord(11,2,5);
         RoutingRecord routingRecord17 = new RoutingRecord(11,3,7);
         RoutingRecord routingRecord18 = new RoutingRecord(11,4,6);
-        RoutingRecord routingRecord19 = new RoutingRecord(12,2,7);
+        RoutingRecord routingRecord19 = new RoutingRecord(12,3,7);
         RoutingRecord routingRecord20 = new RoutingRecord(12,4,5);
-        RoutingRecord routingRecord21 = new RoutingRecord(12,1,6);
+        RoutingRecord routingRecord21 = new RoutingRecord(12,2,6);
         List<RoutingRecord>routes = new ArrayList<RoutingRecord>();
-        routes.add(routingRecord13.getKey(), routingRecord13);
-        routes.add(routingRecord14.getKey(), routingRecord14);
-        routes.add(routingRecord15.getKey(), routingRecord15);
-        routes.add(routingRecord16.getKey(), routingRecord16);
-        routes.add(routingRecord17.getKey(), routingRecord17);
-        routes.add(routingRecord18.getKey(), routingRecord18);
-        routes.add(routingRecord19.getKey(), routingRecord19);
-        routes.add(routingRecord20.getKey(), routingRecord20);
-        routes.add(routingRecord21.getKey(), routingRecord21);
+        routes.add( routingRecord13);
+        routes.add(routingRecord14);
+        routes.add(routingRecord15);
+        routes.add(routingRecord16);
+        routes.add(routingRecord17);
+        routes.add(routingRecord18);
+        routes.add(routingRecord19);
+        routes.add(routingRecord20);
+        routes.add(routingRecord21);
         routingTable.addRoutes(routes);
         bestRoutes = routingTable.getBestRoutes();
-        forwardingTable.addRoutes(bestRoutes);
+        forwardingTable.addForwardingRoutes(bestRoutes);
 
+        //Make better routes to existing nodes and add them to the routing table.
+        //Get the best routes from the routing table
+        //Add the best routes to the forwarding table
         RoutingRecord routingRecord22 = new RoutingRecord(10,1,10);
         RoutingRecord routingRecord23 = new RoutingRecord(11,1,11);
         RoutingRecord routingRecord24 = new RoutingRecord(12,1,12);
         List<RoutingRecord>newRoutes = new ArrayList<RoutingRecord>();
-        newRoutes.add(routingRecord22.getKey(), routingRecord22);
-        newRoutes.add(routingRecord23.getKey(), routingRecord23);
-        newRoutes.add(routingRecord24.getKey(), routingRecord24);
+        newRoutes.add(routingRecord22);
+        newRoutes.add(routingRecord23);
+        newRoutes.add(routingRecord24);
         routingTable.addRoutes(newRoutes);
         bestRoutes = routingTable.getBestRoutes();
-        forwardingTable.addRoutes(bestRoutes);
+        forwardingTable.addForwardingRoutes(bestRoutes);
 
 
     }
