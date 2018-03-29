@@ -16,6 +16,11 @@ import java.util.Enumeration;
  */
 public class Constants {
 
+    //Own Network Number Stuff
+    public static final Integer OWN_NETWORK_NUMBER = 8;
+    public static final Integer OWN_HOST_NUMBER = 8;
+    public static final Integer OWN_DISTANCE = 0;
+
     // LRP Packet Disassembly offsets
     public static final Integer LRP_PACKET_LL3P_ADDR_OFFSET = 0;
     public static final Integer LRP_PACKET_LL3P_ADDR_END_OFFSET = 4;
@@ -24,17 +29,19 @@ public class Constants {
     public static final Integer LRP_PACKET_COUNT_OFFSET = 5;
     public static final Integer LRP_PACKET_COUNT_END_OFFSET = 6;
     public static final Integer LRP_PACKET_FIRST_NETWORK_DISTANCE_PAIR_OFFSET = 6;
-    public static final Integer LRP_PACKET_NETWORK_DISTANCE_PAIR_END_OFFSET =2;
+    public static final Integer LRP_PACKET_NETWORK_DISTANCE_PAIR_END_OFFSET =4;
 
     //Network Distance Pair offsets and byte pad sizes
     public static final Integer NETWORK_CHAR_OFFSET = 0;
     public static final Integer DISTANCE_CHAR_OFFSET = 2;
-    public static final Integer NETWORK_DISTANCE_PAIR_BYTE_PAD = 1;
+    public static final Integer NETWORK_DISTANCE_PAIR_BYTE_PAD = 2;
 
     // Scheduler update intervals and estimated Router boot timer
+    public static final Integer LRP_DAEMON_UPDATE_INTERVAL = 10;
     public static final Integer ARP_DAEMON_UPDATE_INTERVAL = 5;
     public static final Integer UI_UPDATE_INTERVAL =1;
     public static final Integer ROUTER_BOOT_TIME = 7;
+    public static final Integer LL3P_ADDR_BYTE_LENGTH = 4;
 
     //Number of threads <- used in Scheduler
     public static final Integer THREAD_COUNT = 5;
@@ -108,7 +115,7 @@ public class Constants {
 
 
     //Time out Constants
-    public static final int MAX_TIME = 5;
+    public static final int MAX_TIME = 30;
     static {
         IP_ADDRESS = getLocalIpAddress();
         Log.i(Constants.logTag, "IP Address is "+IP_ADDRESS); // this will show up in the log file

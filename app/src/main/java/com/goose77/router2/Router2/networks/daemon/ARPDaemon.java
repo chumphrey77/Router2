@@ -18,7 +18,7 @@ import java.util.Observer;
 /**
  * Controls Layer 3 ARP packet usage
  */
-public class ARPDaemon implements Runnable, Observer{
+public class ARPDaemon extends Observable implements Runnable, Observer{
     private TimedTable arpTable;
     private static ARPDaemon ourInstance = new ARPDaemon();
     private LL2Daemon ll2Daemon;
@@ -28,6 +28,7 @@ public class ARPDaemon implements Runnable, Observer{
      */
     private ARPDaemon(){
         arpTable = new TimedTable();
+        addObserver(LRPDaemon.getInstance());
     }
 
     /**
@@ -177,7 +178,7 @@ public class ARPDaemon implements Runnable, Observer{
         return arpTable.getTableAsArrayList();
     }
 
-    public void snedARPRequest(Integer ll2pAddress){
+    public void sendARPRequest(Integer ll2pAddress){
        ll2Daemon.sendARPRequest(ll2pAddress);
     }
 }

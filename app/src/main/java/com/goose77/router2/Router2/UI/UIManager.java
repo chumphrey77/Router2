@@ -65,9 +65,7 @@ public class UIManager implements Observer {
     /**
      * Givess access to on screen widgets
      */
-    public void setUpWidgets(){
-
-    }
+    public void setUpWidgets(){ }
 
     /**
      * Updates the context variable when the Bootloader objects sends out a notify command
@@ -83,6 +81,7 @@ public class UIManager implements Observer {
         }
         setUpWidgets();
     }
+
 
     public TableUI getTableUI() {
         return tableUI;

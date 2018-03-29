@@ -41,12 +41,12 @@ public class NetworkDistancePair implements HeaderField {
      */
     @Override
     public String toHexString() {
-        return Utilities.padHexString(Integer.toHexString(network),Constants.NETWORK_DISTANCE_PAIR_BYTE_PAD) +
-                Utilities.padHexString(Integer.toHexString(distance),Constants.NETWORK_DISTANCE_PAIR_BYTE_PAD);
+        return Utilities.padHexString(Integer.toHexString(network),Constants.NETWORK_DISTANCE_PAIR_BYTE_PAD/2) +
+                Utilities.padHexString(Integer.toHexString(distance),Constants.NETWORK_DISTANCE_PAIR_BYTE_PAD/2);
     }
 
     public String toString(){
-        return "Network number: " + Utilities.padHexString(Integer.toHexString(network),Constants.NETWORK_DISTANCE_PAIR_BYTE_PAD)
+        return "Network number: " + Utilities.padHexString(Integer.toHexString(network),Constants.NETWORK_DISTANCE_PAIR_BYTE_PAD/2)
                 + " Distance: " + distance;
     }
     /**

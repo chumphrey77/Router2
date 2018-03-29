@@ -77,9 +77,12 @@ public class HeaderFieldFactory implements Factory<HeaderField,String> {
             return (U)new LRPRouteCount(data);
         }
         else if(type == Constants.NETWORK_DISTANCE_PAIR_FIELD_ID){
-            return (U)new NetworkDistancePair(data);
+            U distancePair =  (U)new NetworkDistancePair(data);
+            return distancePair;
         }
-        return null;
+        else {
+            return null;
+        }
     }
 
     /**

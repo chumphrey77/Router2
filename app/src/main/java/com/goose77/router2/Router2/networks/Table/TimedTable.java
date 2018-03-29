@@ -1,6 +1,7 @@
 package com.goose77.router2.Router2.networks.Table;
 
 import com.goose77.router2.Router2.networks.tableRecord.ARPRecord;
+import com.goose77.router2.Router2.networks.tableRecord.RoutingRecord;
 import com.goose77.router2.Router2.networks.tableRecord.TableRecord;
 
 import java.util.ArrayList;
@@ -50,6 +51,19 @@ public class TimedTable extends Table {
      * Update the last time a record was used to now
      * @param key
      */
+    public void touchRoutingRecord(Integer key){
+        try {
+            ((RoutingRecord) this.getItem(key)).updateTime();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Update the last time a record was used to now
+     * @param key
+     */
     public void touch(Integer key){
         try {
             ((ARPRecord) this.getItem(key)).updateTime();
@@ -74,6 +88,6 @@ public class TimedTable extends Table {
                 }
             }
         }
-     return false;
+        return false;
     }
 }

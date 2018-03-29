@@ -7,6 +7,7 @@ import com.goose77.router2.Router2.networks.datagram_fields.LRPSequenceNumber;
 import com.goose77.router2.Router2.networks.datagram_fields.NetworkDistancePair;
 import com.goose77.router2.Router2.support.HeaderFieldFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -50,6 +51,7 @@ public class LRPPacket implements Datagram {
      */
     public LRPPacket(String packetString){
         HeaderFieldFactory fieldFactory = HeaderFieldFactory.getInstance();
+        routes = new ArrayList<>();
         int packetSize = packetString.length();
         String ll3pAddrString = packetString.substring(Constants.LRP_PACKET_LL3P_ADDR_OFFSET,
                 Constants.LRP_PACKET_LL3P_ADDR_END_OFFSET);
@@ -60,8 +62,9 @@ public class LRPPacket implements Datagram {
         for(int i = Constants.LRP_PACKET_FIRST_NETWORK_DISTANCE_PAIR_OFFSET;
             i <= packetSize - Constants.LRP_PACKET_NETWORK_DISTANCE_PAIR_END_OFFSET;
             i += Constants.LRP_PACKET_NETWORK_DISTANCE_PAIR_END_OFFSET){
-            routes.add((NetworkDistancePair) fieldFactory.getItem(Constants.NETWORK_DISTANCE_PAIR_FIELD_ID,
-                    packetString.substring(i, i+Constants.LRP_PACKET_NETWORK_DISTANCE_PAIR_END_OFFSET)));
+            NetworkDistancePair distancePair = (NetworkDistancePair) fieldFactory.getItem(Constants.NETWORK_DISTANCE_PAIR_FIELD_ID,
+                    packetString.substring(i, i+Constants.LRP_PACKET_NETWORK_DISTANCE_PAIR_END_OFFSET));
+            routes.add(distancePair);
         }
         ll3pAddr = fieldFactory.getItem(Constants.LL3P_SOURCE_ADDRESS_FIELD_ID, ll3pAddrString);
         seqNum = fieldFactory.getItem(Constants.LRP_SEQUENCE_NUMBER_FIELD_ID, seqNumString);

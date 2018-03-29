@@ -28,7 +28,7 @@ public class Utilities {
         String outputString =inputString;
         if(differenceInNumOfCharacters > 0){
             for(int i =0; i < differenceInNumOfCharacters; i++){
-                paddingCharacters = paddingCharacters + "0";
+                paddingCharacters ="0"+ paddingCharacters ;
             }
             outputString = paddingCharacters+inputString;
         }
@@ -60,5 +60,11 @@ public class Utilities {
 
     public int  getTimeInSeconds(){
         return (int) (Calendar.getInstance().getTimeInMillis()/1000 - baseDateInSeconds);
+    }
+
+    public static Integer getNetworkFromLL3P(Integer ll3p){
+        String ll3pString = Integer.toHexString(ll3p);
+        String networkNumberString = ll3pString.substring(0,2);
+        return Integer.parseInt(networkNumberString, 16);
     }
 }

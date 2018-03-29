@@ -21,7 +21,7 @@ public class Scheduler implements Observer {
     private static Scheduler ourInstance = new Scheduler();
     private ScheduledThreadPoolExecutor threadManager;
     private ARPDaemon arpDaemon;
-   // private LRPDaemon lrpDaemon; todo uncomment this once implemented
+   private LRPDaemon lrpDaemon;
     private TableUI tableUI;
 
     /**
@@ -29,6 +29,7 @@ public class Scheduler implements Observer {
      */
     private Scheduler(){
         arpDaemon = ARPDaemon.getInstance();
+        lrpDaemon = LRPDaemon.getInstance();
         tableUI = UIManager.getInstance().getTableUI();
     }
 
@@ -55,6 +56,10 @@ public class Scheduler implements Observer {
         threadManager.scheduleAtFixedRate(arpDaemon,
                                     Constants.ROUTER_BOOT_TIME,
                                     Constants.ARP_DAEMON_UPDATE_INTERVAL,
+                                    TimeUnit.SECONDS);
+        threadManager.scheduleAtFixedRate(lrpDaemon,
+                                    Constants.ROUTER_BOOT_TIME,
+                                    Constants.LRP_DAEMON_UPDATE_INTERVAL,
                                     TimeUnit.SECONDS);
 
     }

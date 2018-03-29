@@ -8,6 +8,7 @@ import com.goose77.router2.Router2.networks.Constants;
 import com.goose77.router2.Router2.networks.daemon.ARPDaemon;
 import com.goose77.router2.Router2.networks.daemon.LL1Daemon;
 import com.goose77.router2.Router2.networks.daemon.LL2Daemon;
+import com.goose77.router2.Router2.networks.daemon.LRPDaemon;
 import com.goose77.router2.Router2.support.ParentActivity;
 
 import java.util.Observable;
@@ -40,6 +41,8 @@ public class TableUI implements Runnable, Observer{
     @Override
     public void run() {
         arpTableUI.updateView();
+        routingTableUI.updateView();
+        forwardingUI.updateView();
     }
 
     /**
@@ -54,6 +57,7 @@ public class TableUI implements Runnable, Observer{
         Activity activity = ParentActivity.getParentActivity();
         adjacencyUI = new AdjacencyTableUI(activity, R.id.AdjacencyTable, LL1Daemon.getInstance().getAdjacencyTable(), LL1Daemon.getInstance());
         arpTableUI = new SingleTableUI(activity, R.id.arpTableListView, ARPDaemon.getInstance().getArpTable());
-        //todo instantiate the other SingleTableUI objcets
+        routingTableUI = new SingleTableUI(activity, R.id.routingTable, LRPDaemon.getInstance().getRoutingTable());
+        forwardingUI = new SingleTableUI(activity, R.id.forwardingTable, LRPDaemon.getInstance().getForwardingTable());
     }
 }

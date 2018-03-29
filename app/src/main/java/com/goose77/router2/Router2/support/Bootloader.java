@@ -11,6 +11,7 @@ import com.goose77.router2.Router2.networks.Table.Table;
 import com.goose77.router2.Router2.networks.daemon.ARPDaemon;
 import com.goose77.router2.Router2.networks.daemon.LL1Daemon;
 import com.goose77.router2.Router2.networks.daemon.LL2Daemon;
+import com.goose77.router2.Router2.networks.daemon.LRPDaemon;
 import com.goose77.router2.Router2.networks.daemon.Scheduler;
 import com.goose77.router2.Router2.networks.datagram.ARPDatagram;
 import com.goose77.router2.Router2.networks.datagram.LL2PFrame;
@@ -66,6 +67,7 @@ public class Bootloader extends Observable {
         addObserver(UIManager.getInstance().getTableUI());
         addObserver(Scheduler.getInstance());
         addObserver(LL2Daemon.getInstance());
+        addObserver(LRPDaemon.getInstance());
         setChanged();
         notifyObservers();
 
@@ -151,7 +153,7 @@ public class Bootloader extends Observable {
         //ll2Daemon.sendARPRequest(Integer.parseInt("112233", 16));
 
       //lab 9 test
-        //Add two of the same Route, See if a duplicate is added to the routing table
+    /*    //Add two of the same Route, See if a duplicate is added to the routing table
         RoutingTable routingTable = new RoutingTable();
         RoutingTable forwardingTable = new RoutingTable();
         RoutingRecord routingRecord = new RoutingRecord(1,2,8);
@@ -232,7 +234,7 @@ public class Bootloader extends Observable {
         newRoutes.add(routingRecord24);
         routingTable.addRoutes(newRoutes);
         bestRoutes = routingTable.getBestRoutes();
-        forwardingTable.addForwardingRoutes(bestRoutes);
+        forwardingTable.addForwardingRoutes(bestRoutes);*/
 
 
     }

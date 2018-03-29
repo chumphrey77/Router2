@@ -119,13 +119,15 @@ public class LL1Daemon extends Observable implements Observer {
         try {
             frameTransmitter = new SendLayer1Frame();
             AdjacencyRecord adjacentRouter = (AdjacencyRecord) adjacencyTable.getItem(ll2p.getDestinationAddress().getAddress());
-            InetAddress ipAddress = adjacentRouter.getIpAddress();
-            DatagramPacket sendPacket = new DatagramPacket(ll2p.toTransmissionString().getBytes(), ll2p.toTransmissionString().length(),
-                    ipAddress,
-                    Constants.UDP_PORT);
-            frameTransmitter.execute(sendPacket);
-            setChanged();
-            notifyObservers(ll2p);
+            if(adjacentRouter != null) {
+                InetAddress ipAddress = adjacentRouter.getIpAddress();
+                DatagramPacket sendPacket = new DatagramPacket(ll2p.toTransmissionString().getBytes(), ll2p.toTransmissionString().length(),
+                        ipAddress,
+                        Constants.UDP_PORT);
+                frameTransmitter.execute(sendPacket);
+                setChanged();
+                notifyObservers(ll2p);
+            }
         }
         catch(LabException e){
             e.printStackTrace();

@@ -38,21 +38,28 @@ public class RoutingTable extends TimedTable {
      */
     public void addNewRoute(TableRecord newEntry){
         RoutingRecord entry = (RoutingRecord) newEntry;
+        RoutingRecord addRecord = null;
+        Integer removalKey = null;
         if(containsRoute(entry.getKey())) {
             for (TableRecord record : table) {
                 RoutingRecord routingRecord = (RoutingRecord) record;
                 if (routingRecord.getKey().equals(entry.getKey())) {
-                    if (routingRecord.getDistance().equals(entry.getDistance())) {
-                        touch(routingRecord.getKey());
+                   if (routingRecord.getDistance().equals(entry.getDistance())) {
+                       touchRoutingRecord(routingRecord.getKey());
                     } else {
-                        removeItem(routingRecord.getKey());
-                        addItem(entry);
+                        removalKey = routingRecord.getKey();
+                        addRecord = entry;
                     }
                 }
             }
         }
+
         else{
             addItem((entry));
+        }
+        if(addRecord != null){
+            removeItem(removalKey);
+            addItem(addRecord);
         }
     }
 
@@ -62,13 +69,17 @@ public class RoutingTable extends TimedTable {
      */
     @Override
     public void removeItem(Integer key) {
+        RoutingRecord removalRecord = null;
         for(TableRecord record : table){
             RoutingRecord routingRecord = (RoutingRecord) record;
             if(table.contains(record)){
                 if(routingRecord.getKey().equals(key)){
-                    table.remove(record);
+                    removalRecord = (RoutingRecord) record;
                 }
             }
+        }
+        if(removalRecord != null) {
+            table.remove(removalRecord);
         }
     }
 

@@ -50,7 +50,7 @@ public class LL3PAddressField implements HeaderField{
      */
     @Override
     public String toHexString() {
-        return Integer.toHexString(address);
+        return Utilities.padHexString(Integer.toHexString(address),Constants.LL3P_ADDR_BYTE_LENGTH);
     }
 
     /**
