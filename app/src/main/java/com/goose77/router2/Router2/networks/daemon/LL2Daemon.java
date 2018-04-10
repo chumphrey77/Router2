@@ -1,9 +1,12 @@
 package com.goose77.router2.Router2.networks.daemon;
 
+import android.util.Log;
+
 import com.goose77.router2.Router2.UI.UIManager;
 import com.goose77.router2.Router2.networks.Constants;
 import com.goose77.router2.Router2.networks.datagram.ARPDatagram;
 import com.goose77.router2.Router2.networks.datagram.LL2PFrame;
+import com.goose77.router2.Router2.networks.datagram.LL3PDatagram;
 import com.goose77.router2.Router2.networks.datagram.LRPPacket;
 import com.goose77.router2.Router2.networks.datagram.TextDatagram;
 import com.goose77.router2.Router2.networks.datagram_fields.CRC;
@@ -24,6 +27,7 @@ public class LL2Daemon implements Observer {
     private UIManager uiManager;
     private LL1Daemon ll1Daemon;
     private ARPDaemon arpDaemon;
+    private LL3PDaemon ll3PDaemon;
     private LRPDaemon lrpDaemon;
     private static LL2Daemon ourInstance = new LL2Daemon();
 
@@ -57,6 +61,7 @@ public class LL2Daemon implements Observer {
         ll1Daemon = LL1Daemon.getInstance();
         arpDaemon = ARPDaemon.getInstance();
         lrpDaemon = LRPDaemon.getInstance();
+        ll3PDaemon = LL3PDaemon.getInstance();
     }
 
 
@@ -74,7 +79,8 @@ public class LL2Daemon implements Observer {
      */
     public void checkTypeField(LL2PFrame frame){
         if(frame.getType().toTransmissionString().equals(Integer.toString(Constants.LL2P_TYPE_IS_LL3P))){
-            uiManager.displayMessage("Unsupported Frame Type Rx'd");
+            ll3PDaemon.processLL3PPacket((LL3PDatagram) frame.getPayload().getPayload(), frame.getSourceAddress().getAddress());
+            Log.i(Constants.logTag, frame.toSummaryString());
         }
         else if(frame.getType().toTransmissionString().equals(Constants.LL2P_TYPE_IS_RESERVED)){
             uiManager.displayMessage("Unsupported Frame Type Rx'd");
@@ -93,7 +99,7 @@ public class LL2Daemon implements Observer {
             arpDaemon.processARPRequest(frame.getSourceAddress().toTransmissionString(), (ARPDatagram) frame.getPayload().getPayload());
         }
         else if(frame.getType().toTransmissionString().equals(Integer.toString(Constants.LL2P_TYPE_IS_ARP_REPLY))){
-            arpDaemon.processARPReply(frame.getDestinationAddress().toTransmissionString(), (ARPDatagram) frame.getPayload().getPayload());
+            arpDaemon.processARPReply(frame.getSourceAddress().toTransmissionString(), (ARPDatagram) frame.getPayload().getPayload());
         }
         else if(frame.getType().toTransmissionString().equals((Integer.toString(Constants.LL2P_TYPE_IS_TEXT)))){
             uiManager.displayMessage("Rx'd Frame of Text Type");
@@ -166,6 +172,17 @@ public class LL2Daemon implements Observer {
         LL2PAddressField srcAddr = factory.getItem(Constants.LL2P_SOURCE_ADDRESS_FIELD_ID, Constants.SRC_ADDR);
         LL2PTypeField type = factory.getItem(Constants.LL2P_TYPE_FIELD_ID, Integer.toString(Constants.LL2P_TYPE_IS_LRP));
         DatagramPayloadField payload =  new DatagramPayloadField(lrpPacket);
+        CRC crc = factory.getItem(Constants.CRC_ID, "0000"); //todo Implement CRC
+        LL2PFrame  newFrame = new LL2PFrame(destAddr, srcAddr, type, payload, crc);
+        ll1Daemon.sendFrame(newFrame);
+    }
+
+    public void sendLL3PDatagram(LL3PDatagram ll3PDatagram, Integer ll2p){
+        HeaderFieldFactory factory = HeaderFieldFactory.getInstance();
+        LL2PAddressField destAddr = factory.getItem(Constants.LL2P_DEST_ADDRESS_FIELD_ID, Integer.toHexString(ll2p));
+        LL2PAddressField srcAddr = factory.getItem(Constants.LL2P_SOURCE_ADDRESS_FIELD_ID, Constants.SRC_ADDR);
+        LL2PTypeField type = factory.getItem(Constants.LL2P_TYPE_FIELD_ID, Integer.toString(Constants.LL2P_TYPE_IS_LL3P));
+        DatagramPayloadField payload =  new DatagramPayloadField(ll3PDatagram);
         CRC crc = factory.getItem(Constants.CRC_ID, "0000"); //todo Implement CRC
         LL2PFrame  newFrame = new LL2PFrame(destAddr, srcAddr, type, payload, crc);
         ll1Daemon.sendFrame(newFrame);

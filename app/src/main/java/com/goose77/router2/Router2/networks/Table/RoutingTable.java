@@ -135,11 +135,11 @@ public class RoutingTable extends TimedTable {
      */
     public List<RoutingRecord> getBestRoutes(){
         Integer routingNumber = 0;
-        Integer lowestDistance = 0;
+        Integer lowestDistance = 255;
         List<RoutingRecord> bestRoutes = new ArrayList<RoutingRecord>();
         Boolean alreadyContains;
         for(TableRecord record : table){
-            lowestDistance = 0;
+            lowestDistance = 255;
             RoutingRecord routingRecord = (RoutingRecord) record;
             routingNumber = routingRecord.getNetworkNumber();
             alreadyContains = false;
@@ -152,7 +152,7 @@ public class RoutingTable extends TimedTable {
                         for(TableRecord compareRecord : table){
                             RoutingRecord compareRoutingRecord = (RoutingRecord) compareRecord;
                             if(compareRoutingRecord.getNetworkNumber().equals(routingRecord.getNetworkNumber())){
-                                if(compareRoutingRecord.getDistance() < lowestDistance || lowestDistance.equals(0)){
+                                if(compareRoutingRecord.getDistance() < lowestDistance ){
                                     lowestDistance = compareRoutingRecord.getDistance();
                                 }
                             }

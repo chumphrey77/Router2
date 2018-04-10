@@ -13,6 +13,7 @@ import com.goose77.router2.Router2.support.Utilities;
  */
 public class NetworkDistancePair implements HeaderField {
     private Integer network;
+    private Integer pairInt;
     private Integer distance;
 
     /**
@@ -23,6 +24,7 @@ public class NetworkDistancePair implements HeaderField {
     public NetworkDistancePair(String pair){
         network = Integer.parseInt(pair.substring(Constants.NETWORK_CHAR_OFFSET,Constants.DISTANCE_CHAR_OFFSET),16);
         distance = Integer.parseInt(pair.substring(Constants.DISTANCE_CHAR_OFFSET),16);
+        pairInt = Integer.parseInt(pair, 16);
     }
     /**
      * Generate the string that will be transmitted in frames
@@ -34,6 +36,9 @@ public class NetworkDistancePair implements HeaderField {
         return toHexString();
     }
 
+    public Integer getPairInt(){
+        return pairInt;
+    }
     /**
      * Create a hex representation of the field
      *
@@ -56,7 +61,7 @@ public class NetworkDistancePair implements HeaderField {
      */
     @Override
     public String explainSelf() {
-        return "Network Num: " + network + "\n" + "Route Distance: " + distance;
+        return "Network Num: " + Utilities.padHexString(Integer.toHexString(network),1) + "\n" + "Route Distance: " +Utilities.padHexString(Integer.toHexString(distance), 1) + "\n";
     }
 
     public Integer getDistance() {

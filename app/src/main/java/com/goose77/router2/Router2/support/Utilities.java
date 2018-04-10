@@ -64,7 +64,15 @@ public class Utilities {
 
     public static Integer getNetworkFromLL3P(Integer ll3p){
         String ll3pString = Integer.toHexString(ll3p);
-        String networkNumberString = ll3pString.substring(0,2);
+        String paddedLL3PString = Utilities.padHexString(ll3pString, 2);
+        String networkNumberString = paddedLL3PString.substring(0,2);
         return Integer.parseInt(networkNumberString, 16);
+    }
+
+    public static Integer getHostFromLL3P(Integer ll3p){
+        String ll3pString = Integer.toHexString(ll3p);
+        String paddedLL3PString = Utilities.padHexString(ll3pString, 2);
+        String hostNumberString = paddedLL3PString.substring(2);
+        return Integer.parseInt(hostNumberString, 16);
     }
 }

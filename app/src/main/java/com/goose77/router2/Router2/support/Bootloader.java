@@ -11,6 +11,7 @@ import com.goose77.router2.Router2.networks.Table.Table;
 import com.goose77.router2.Router2.networks.daemon.ARPDaemon;
 import com.goose77.router2.Router2.networks.daemon.LL1Daemon;
 import com.goose77.router2.Router2.networks.daemon.LL2Daemon;
+import com.goose77.router2.Router2.networks.daemon.LL3PDaemon;
 import com.goose77.router2.Router2.networks.daemon.LRPDaemon;
 import com.goose77.router2.Router2.networks.daemon.Scheduler;
 import com.goose77.router2.Router2.networks.datagram.ARPDatagram;
@@ -68,6 +69,7 @@ public class Bootloader extends Observable {
         addObserver(Scheduler.getInstance());
         addObserver(LL2Daemon.getInstance());
         addObserver(LRPDaemon.getInstance());
+        addObserver(LL3PDaemon.getInstance());
         setChanged();
         notifyObservers();
 

@@ -7,6 +7,10 @@ import com.goose77.router2.Router2.networks.datagram_fields.DatagramPayloadField
 import com.goose77.router2.Router2.networks.datagram_fields.LL2PAddressField;
 import com.goose77.router2.Router2.networks.datagram_fields.LL2PTypeField;
 import com.goose77.router2.Router2.networks.datagram_fields.LL3PAddressField;
+import com.goose77.router2.Router2.networks.datagram_fields.LL3PChecksum;
+import com.goose77.router2.Router2.networks.datagram_fields.LL3PIdentifierField;
+import com.goose77.router2.Router2.networks.datagram_fields.LL3PTTLField;
+import com.goose77.router2.Router2.networks.datagram_fields.LL3PTypeField;
 import com.goose77.router2.Router2.networks.datagram_fields.LRPRouteCount;
 import com.goose77.router2.Router2.networks.datagram_fields.LRPSequenceNumber;
 import com.goose77.router2.Router2.networks.datagram_fields.NetworkDistancePair;
@@ -79,6 +83,18 @@ public class HeaderFieldFactory implements Factory<HeaderField,String> {
         else if(type == Constants.NETWORK_DISTANCE_PAIR_FIELD_ID){
             U distancePair =  (U)new NetworkDistancePair(data);
             return distancePair;
+        }
+        else if(type == Constants.LL3P_TYPE_ID){
+            return (U)new LL3PTypeField(data);
+        }
+        else if(type == Constants.LL3P_IDENTIFIER_ID){
+            return (U)new LL3PIdentifierField(data);
+        }
+        else if(type == Constants.LL3P_TTL_ID){
+            return (U)new LL3PTTLField(data);
+        }
+        else if(type == Constants.LL3P_CHECKSUM_ID){
+            return (U)new LL3PChecksum(data);
         }
         else {
             return null;

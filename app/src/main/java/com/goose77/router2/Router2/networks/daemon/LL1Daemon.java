@@ -142,7 +142,7 @@ public class LL1Daemon extends Observable implements Observer {
      */
     public void processLayer1FrameBytes(byte[] frame){
         LL2PFrame layer2Frame = new LL2PFrame(frame);
-        Log.i(Constants.logTag, layer2Frame.toProtocolExplanationString());
+        //Log.i(Constants.logTag, layer2Frame.toProtocolExplanationString());
         setChanged();
         notifyObservers(layer2Frame);
 

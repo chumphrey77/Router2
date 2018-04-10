@@ -4,6 +4,7 @@ import com.goose77.router2.Router2.networks.Constants;
 import com.goose77.router2.Router2.networks.datagram.ARPDatagram;
 import com.goose77.router2.Router2.networks.datagram.Datagram;
 import com.goose77.router2.Router2.networks.datagram.HeaderField;
+import com.goose77.router2.Router2.networks.datagram.LL3PDatagram;
 import com.goose77.router2.Router2.networks.datagram.LRPPacket;
 import com.goose77.router2.Router2.networks.datagram.TextDatagram;
 
@@ -46,7 +47,7 @@ public class DatagramFactory implements Factory<Datagram,String> {
             return (U)new LRPPacket(data);
         }
         else if(type == (Constants.LL2P_TYPE_IS_LL3P)){
-            //todo implement this type
+            return (U) new LL3PDatagram(data);
         }
         else if(type == (Constants.LL2P_TYPE_IS_RESERVED)){
             //todo implement this type

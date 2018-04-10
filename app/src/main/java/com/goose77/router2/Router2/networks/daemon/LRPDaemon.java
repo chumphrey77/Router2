@@ -136,7 +136,7 @@ public class LRPDaemon implements Runnable, Observer {
 
         for(Integer ll3p : arpDaemon.getAttachedNodes()){
             RoutingRecord adjacentRoutingRecord = new RoutingRecord(Utilities.getNetworkFromLL3P(ll3p),
-                    1,ll3p);
+                   1,ll3p);
             routingTable.addNewRoute(adjacentRoutingRecord);
         }
         forwardingTable.addForwardingRoutes(routingTable.getBestRoutes());
@@ -146,7 +146,7 @@ public class LRPDaemon implements Runnable, Observer {
            for(RoutingRecord routingRecord : forwardingTable.getRouteListExcluding(ll3p)){
                pairs.add(routingRecord.getNetworkDistancePair());
            }
-               LRPPacket lrpPacket = new LRPPacket(ll3p, sequenceNumber, forwardingTable.getRouteListExcluding(ll3p).size(), pairs);
+               LRPPacket lrpPacket = new LRPPacket(Integer.parseInt(Constants.LL3P_SRC_ADDR, 16),sequenceNumber, forwardingTable.getRouteListExcluding(ll3p).size(), pairs);
                sendUpdate(lrpPacket, ll3p);
        }
     }
@@ -200,7 +200,7 @@ public class LRPDaemon implements Runnable, Observer {
         List<RoutingRecord> routingRecords = new ArrayList<>();
         for(NetworkDistancePair networkDistancePair : networkDistancePairs){
             routingRecords.add(new RoutingRecord(networkDistancePair.getNetwork(),
-                    networkDistancePair.getDistance(),
+                    networkDistancePair.getDistance()+1,
                     ll3p));
         }
         routingTable.addRoutes(routingRecords);

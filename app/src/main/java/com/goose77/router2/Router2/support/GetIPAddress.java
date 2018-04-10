@@ -49,7 +49,7 @@ public class GetIPAddress {
 
         // spin off the thread. Log a message to that effect.
         thread.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, hostname);
-        Log.i(Constants.logTag, " -- Started Thread. Getting ready to wait for results.");
+        //Log.i(Constants.logTag, " -- Started Thread. Getting ready to wait for results.");
         // use the get method to wait on the thread before proceeding. Also, don't include
         // an "onPostExecute()" method in the private AsyncTask object.
         try {

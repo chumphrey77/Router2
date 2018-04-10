@@ -43,6 +43,7 @@ public class RoutingRecord extends TableRecordClass {
     }
 
 
+
     public NetworkDistancePair getNetworkDistancePair() {
         return networkDistancePair;
     }

@@ -83,8 +83,6 @@ public class TimedTable extends Table {
             for (TableRecord thisRecord : table) {
                 if ((thisRecord).getKey().equals(record.getKey())) {
                     return true;
-                } else {
-                    return false;
                 }
             }
         }

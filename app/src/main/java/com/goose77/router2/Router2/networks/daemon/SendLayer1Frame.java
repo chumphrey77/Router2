@@ -27,7 +27,6 @@ public class SendLayer1Frame extends AsyncTask<DatagramPacket, Void, Void> {
         DatagramPacket packet = arg0[0];
         try {
             sendSocket.send(packet);
-            Log.i(Constants.logTag, ">>>>>>>>>Sent frame: "+new String(packet.getData()));
         } catch (IOException e) {
             e.printStackTrace();
         }

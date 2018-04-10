@@ -6,6 +6,7 @@ import com.goose77.router2.Router2.networks.datagram_fields.LRPRouteCount;
 import com.goose77.router2.Router2.networks.datagram_fields.LRPSequenceNumber;
 import com.goose77.router2.Router2.networks.datagram_fields.NetworkDistancePair;
 import com.goose77.router2.Router2.support.HeaderFieldFactory;
+import com.goose77.router2.Router2.support.Utilities;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,7 @@ public class LRPPacket implements Datagram {
      */
     public LRPPacket(Integer ll3p, Integer seqNum, Integer count, List<NetworkDistancePair> routes){
         HeaderFieldFactory fieldFactory = HeaderFieldFactory.getInstance();
-        String ll3pAddrString = Integer.toHexString(ll3p);
+        String ll3pAddrString = Utilities.padHexString( Integer.toHexString(ll3p), 2);
         String seqNumString = Integer.toHexString(seqNum);
         String countStirng = Integer.toHexString(count);
         this.routes = routes;
@@ -121,7 +122,7 @@ public class LRPPacket implements Datagram {
     @Override
     public String toProtocolExplanationString() {
         String exp ="LRP Packet \n";
-        exp = ll3pAddr.explainSelf() + seqNum.explainSelf() + count.explainSelf();
+        exp = ll3pAddr.explainSelf() + " \n" + seqNum.explainSelf() +"\n"+ count.explainSelf() +"\n";
         for(NetworkDistancePair pair : routes){
             exp += pair.explainSelf();
         }

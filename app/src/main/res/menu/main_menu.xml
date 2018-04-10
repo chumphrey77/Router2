@@ -12,5 +12,11 @@
         android:title="@string/AddAdjacency">
 
     </item>
+    <item
+        android:id="@+id/Messenger"
+        android:orderInCategory="110"
+        android:title="@string/Messenger">
+
+    </item>
 
 </menu>

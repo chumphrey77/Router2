@@ -26,6 +26,7 @@ public class UIManager implements Observer {
     private Context context;
     private TableUI tableUI;
     private SnifferUI snifferUI;
+    private Messenger messenger;
 
     /**
      * Empty Constructor
@@ -33,6 +34,7 @@ public class UIManager implements Observer {
     private UIManager(){
          tableUI = new TableUI();
          snifferUI = new SnifferUI();
+         messenger = new Messenger();
     }
 
     /**
@@ -63,6 +65,15 @@ public class UIManager implements Observer {
     }
 
     /**
+     * A simplified override of the other displayMessage method
+     * Gives a default length for the message
+     * @param message the message that is to be displayed
+     */
+    public void displayMessage( Integer ll3p, String message){
+        messenger.receiveMessage(ll3p, message);
+    }
+
+    /**
      * Givess access to on screen widgets
      */
     public void setUpWidgets(){ }
@@ -78,9 +89,18 @@ public class UIManager implements Observer {
         if(observable.getClass() == Bootloader.class){
             Bootloader bootLoader = (Bootloader)object;
             context = parentActivity.getBaseContext();
+            messenger.finishCreatingMessenger();
         }
         setUpWidgets();
     }
+
+    /**
+     * open the messaging thing
+     */
+    public void openMessenger(){
+        messenger.openMessengerWindow();
+    }
+
 
 
     public TableUI getTableUI() {
@@ -93,5 +113,9 @@ public class UIManager implements Observer {
 
     public SnifferUI getSnifferUI(){
         return snifferUI;
+    }
+
+    public Messenger getMessenger(){
+        return messenger;
     }
 }

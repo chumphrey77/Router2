@@ -17,4 +17,6 @@
     <string name="InsertLL2PTextView">Insert Hex LL2P Address Below</string>
     <string name="AddAdjacencyButtonText">Add Adjacency</string>
     <string name="CancelButtonText">Cancel Button</string>
+    <string name="name_prompt">Send to?</string>”
+    <string name="Messenger">Messenger</string>”
 </resources>

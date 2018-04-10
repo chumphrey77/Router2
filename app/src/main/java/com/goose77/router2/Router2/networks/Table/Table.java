@@ -1,5 +1,6 @@
 package com.goose77.router2.Router2.networks.Table;
 
+import com.goose77.router2.Router2.networks.tableRecord.RoutingRecord;
 import com.goose77.router2.Router2.networks.tableRecord.TableRecord;
 import com.goose77.router2.Router2.support.LabException;
 import com.goose77.router2.Router2.support.TableRecordFactory;
@@ -87,6 +88,18 @@ public class Table extends Observable implements TableInterface {
         for(TableRecord record : table){
             if(record.getKey().equals(key)){
                 return record;
+            }
+        }
+        return null;
+    }
+
+    public TableRecord getRoute(Integer key) throws LabException {
+        for(TableRecord record : table){
+            if(record instanceof RoutingRecord) {
+                RoutingRecord routingRecord = (RoutingRecord) record;
+                if ( routingRecord.getNetworkDistancePair().getPairInt().equals(key)) {
+                    return record;
+                }
             }
         }
         return null;

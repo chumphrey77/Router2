@@ -2,6 +2,8 @@ package com.goose77.router2.Router2.networks.datagram;
 
 import com.goose77.router2.Router2.support.Utilities;
 
+import java.math.BigInteger;
+
 /**
  * Created by goose on 1/26/2018.
  */
@@ -20,8 +22,14 @@ public class TextDatagram implements Datagram {
      */
     @Override
     public String toHexString() {
-        //String hexString = Utilities.toHexString(payload);
-        return payload;
+        return Utilities.toHexString(payload);
+    /*    try{
+            return String.format("%040x", new BigInteger(1, payload.getBytes("UTF8")));
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;*/
     }
 
     /**
@@ -41,7 +49,13 @@ public class TextDatagram implements Datagram {
      */
     @Override
     public String toSummaryString() {
-        String sum = payload.substring(0, 20) + "...";
+        String sum ="";
+        if(payload.length() > 20) {
+            sum = payload.substring(0, 20) + "...";
+        }
+        else{
+           sum = payload;
+        }
         return sum;
     }
 

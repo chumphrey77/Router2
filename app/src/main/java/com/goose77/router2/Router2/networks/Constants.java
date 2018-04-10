@@ -16,6 +16,21 @@ import java.util.Enumeration;
  */
 public class Constants {
 
+    //LL3P Datagram Field IDs
+    public static final Integer LL3P_TYPE_ID = 1777;
+    public static final Integer LL3P_IDENTIFIER_ID = 1778;
+    public static final Integer LL3P_TTL_ID = 1779;
+    public static final Integer LL3P_CHECKSUM_ID = 1776;
+
+    //LL3P Datagram Offsets and Sizes for fields
+    public static final Integer LL3P_SRC_ADDR_OFFSET = 0;
+    public static final Integer LL3P_DEST_ADDR_OFFSET = 4;
+    public static final Integer LL3P_TYPE_OFFSET = 8;
+    public static final Integer LL3P_IDENTIFIER_OFFSET = 12;
+    public static final Integer LL3P_TTL_OFFSET = 16;
+    public static final Integer LL3P_PAYLOAD_OFFSET = 18;
+    public static final Integer LL3P_CHECKSUM_OFFSET_FROM_END = 4;
+
     //Own Network Number Stuff
     public static final Integer OWN_NETWORK_NUMBER = 8;
     public static final Integer OWN_HOST_NUMBER = 8;
@@ -41,7 +56,7 @@ public class Constants {
     public static final Integer ARP_DAEMON_UPDATE_INTERVAL = 5;
     public static final Integer UI_UPDATE_INTERVAL =1;
     public static final Integer ROUTER_BOOT_TIME = 7;
-    public static final Integer LL3P_ADDR_BYTE_LENGTH = 4;
+    public static final Integer LL3P_ADDR_BYTE_LENGTH = 2;
 
     //Number of threads <- used in Scheduler
     public static final Integer THREAD_COUNT = 5;
@@ -115,10 +130,10 @@ public class Constants {
 
 
     //Time out Constants
-    public static final int MAX_TIME = 30;
+    public static final int MAX_TIME = 60;
     static {
         IP_ADDRESS = getLocalIpAddress();
-        Log.i(Constants.logTag, "IP Address is "+IP_ADDRESS); // this will show up in the log file
+        //Log.i(Constants.logTag, "IP Address is "+IP_ADDRESS); // this will show up in the log file
     }
 
     /*
